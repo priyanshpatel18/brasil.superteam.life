@@ -8,7 +8,7 @@ import { useCredentials, useTrackImageMap } from "@/hooks";
 import Link from "next/link";
 
 export default function CertificatesPage() {
-    const { data: credentials, isLoading } = useCredentials();
+    const { data: credentials, isLoading, error } = useCredentials();
     const trackImageMap = useTrackImageMap();
 
     if (isLoading) {
@@ -16,6 +16,22 @@ export default function CertificatesPage() {
             <div className="space-y-6">
                 <PageHeader title="Certificates" subtitle="Your on-chain credential NFTs" />
                 <div className="h-32 animate-pulse rounded-xl bg-muted" />
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="space-y-6">
+                <PageHeader title="Certificates" subtitle="Your on-chain credential NFTs" />
+                <div className="rounded-2xl border-4 border-amber-500/30 bg-amber-500/10 p-5">
+                    <p className="font-game text-base text-amber-300">
+                        Couldn&apos;t load credentials right now.
+                    </p>
+                    <p className="mt-2 text-sm text-amber-200/90">
+                        {error.message}
+                    </p>
+                </div>
             </div>
         );
     }

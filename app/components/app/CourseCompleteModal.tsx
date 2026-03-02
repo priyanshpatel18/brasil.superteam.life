@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-    Trophy,
     ArrowRight,
     ExternalLink,
     CheckCircle2,
@@ -14,7 +13,6 @@ import {
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
 import { useIssueCredential } from "@/hooks";
-import { cn } from "@/lib/utils";
 
 export interface CourseCompleteModalProps {
     courseId: string;
@@ -22,12 +20,16 @@ export interface CourseCompleteModalProps {
     xpEarned: number;
     /** Credential track collection pubkey. Pass empty string to skip minting. */
     trackCollection: string;
+    isTrackCollectionLoading?: boolean;
     onClose: () => void;
 }
 
 type Phase = "celebrate" | "minting" | "done" | "error";
 
-const EXPLORER_CLUSTER = process.env.NEXT_PUBLIC_SOLANA_CLUSTER === "mainnet-beta"
+const EXPLORER_CLUSTER = (
+    process.env.NEXT_PUBLIC_SOLANA_CLUSTER ??
+    process.env.NEXT_PUBLIC_CLUSTER
+) === "mainnet-beta"
     ? ""
     : "?cluster=devnet";
 
@@ -36,13 +38,15 @@ export function CourseCompleteModal({
     courseName,
     xpEarned,
     trackCollection,
+    isTrackCollectionLoading = false,
     onClose,
 }: CourseCompleteModalProps) {
     const router = useRouter();
     const [phase, setPhase] = useState<Phase>("celebrate");
     const [credentialAddress, setCredentialAddress] = useState<string | null>(null);
     const [mintError, setMintError] = useState<string | null>(null);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [mintSkipped, setMintSkipped] = useState(false);
+    const [credentialAlreadyIssued, setCredentialAlreadyIssued] = useState(false);
     const hasMintedRef = useRef(false);
 
     const issueCredential = useIssueCredential();
@@ -72,17 +76,26 @@ export function CourseCompleteModal({
     // Auto-advance to minting after 2.5 s
     useEffect(() => {
         if (phase !== "celebrate") return;
-        const t = setTimeout(() => setPhase("minting"), 2500);
+        if (isTrackCollectionLoading) return;
+        const t = setTimeout(() => {
+            if (!trackCollection) {
+                setMintSkipped(true);
+                setPhase("done");
+                return;
+            }
+            setPhase("minting");
+        }, 2500);
         return () => clearTimeout(t);
-    }, [phase]);
+    }, [phase, trackCollection, isTrackCollectionLoading]);
 
     // Mint when entering minting phase
     useEffect(() => {
         if (phase !== "minting" || hasMintedRef.current) return;
         hasMintedRef.current = true;
+        setMintSkipped(false);
 
         if (!trackCollection) {
-            // No collection configured — skip straight to done without an asset
+            setMintSkipped(true);
             setPhase("done");
             return;
         }
@@ -90,19 +103,22 @@ export function CourseCompleteModal({
         issueCredential.mutate(
             {
                 courseId,
-                learner: "", // useIssueCredential uses connected publicKey internally
                 credentialName: `${courseName} Certificate`,
                 metadataUri: `https://superteam.academy/api/metadata/${courseId}`,
                 trackCollection,
                 coursesCompleted: 1,
                 totalXp: xpEarned,
+                allowAlreadyIssued: true,
             },
             {
                 onSuccess: (data) => {
                     setCredentialAddress(data.credentialAsset ?? null);
+                    setCredentialAlreadyIssued(!!data.alreadyIssued);
+                    setMintSkipped(false);
                     setPhase("done");
                 },
                 onError: (err: Error) => {
+                    setCredentialAlreadyIssued(false);
                     setMintError(err.message);
                     setPhase("error");
                 },
@@ -149,7 +165,11 @@ export function CourseCompleteModal({
                         </div>
 
                         <p className="font-game text-sm text-muted-foreground animate-pulse mt-1">
-                            Minting your NFT credential…
+                            {isTrackCollectionLoading
+                                ? "Preparing your completion reward…"
+                                : trackCollection
+                                ? "Minting your NFT credential…"
+                                : "Course completion saved. Credential collection not configured for this track."}
                         </p>
                     </div>
                 )}
@@ -188,9 +208,19 @@ export function CourseCompleteModal({
                         </div>
 
                         <div>
-                            <h2 className="font-game text-2xl sm:text-3xl">Credential Minted!</h2>
+                            <h2 className="font-game text-2xl sm:text-3xl">
+                                {credentialAlreadyIssued
+                                    ? "Credential Already Issued"
+                                    : mintSkipped
+                                    ? "Course Completed!"
+                                    : "Credential Minted!"}
+                            </h2>
                             <p className="font-game text-muted-foreground mt-1 text-sm">
-                                Your NFT credential is permanently on-chain.
+                                {credentialAlreadyIssued
+                                    ? "A credential already exists for this completed course. You can view it in your certificates."
+                                    : mintSkipped
+                                    ? "Your course completion is saved, but this track has no credential collection configured yet."
+                                    : "Your NFT credential is permanently on-chain."}
                             </p>
                         </div>
 
@@ -229,8 +259,22 @@ export function CourseCompleteModal({
                                     <ArrowRight className="ml-2 h-5 w-5" />
                                 </Button>
                             )}
+                            {!credentialAddress && credentialAlreadyIssued && (
+                                <Button
+                                    variant="pixel"
+                                    size="lg"
+                                    className="font-game text-lg w-full"
+                                    onClick={() => {
+                                        onClose();
+                                        router.push("/certificates");
+                                    }}
+                                >
+                                    View Certificates
+                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                </Button>
+                            )}
                             <Button
-                                variant={credentialAddress ? "outline" : "pixel"}
+                                variant={credentialAddress || credentialAlreadyIssued ? "outline" : "pixel"}
                                 size="lg"
                                 className="font-game text-lg w-full"
                                 onClick={() => {
@@ -265,6 +309,8 @@ export function CourseCompleteModal({
                                 className="font-game text-lg w-full"
                                 onClick={() => {
                                     setMintError(null);
+                                    setMintSkipped(false);
+                                    setCredentialAlreadyIssued(false);
                                     hasMintedRef.current = false;
                                     setPhase("minting");
                                 }}

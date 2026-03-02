@@ -1,20 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-const HELIUS_RPC = process.env.NEXT_PUBLIC_HELIUS_RPC ?? "";
-const HELIUS_API_KEY = process.env.HELIUS_API_KEY ?? "";
-const CLUSTER = process.env.NEXT_PUBLIC_CLUSTER ?? "devnet";
-
-function getHeliusUrl(): string | null {
-  if (HELIUS_RPC) return HELIUS_RPC;
-  if (HELIUS_API_KEY) {
-    const base =
-      CLUSTER === "mainnet-beta"
-        ? "https://mainnet.helius-rpc.com"
-        : "https://devnet.helius-rpc.com";
-    return `${base}/?api-key=${HELIUS_API_KEY}`;
-  }
-  return null;
-}
+import { getHeliusRpcConfig } from "@/lib/server/helius";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -23,7 +8,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "id required" }, { status: 400 });
   }
 
-  const url = getHeliusUrl();
+  const helius = getHeliusRpcConfig();
+  const url = helius.url;
   if (!url) {
     return NextResponse.json({ error: "Helius RPC not configured" }, { status: 503 });
   }

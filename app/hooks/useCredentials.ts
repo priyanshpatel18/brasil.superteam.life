@@ -12,7 +12,13 @@ export function useCredentials() {
     queryKey: ["credentials", wallet],
     queryFn: async (): Promise<CredentialInfo[]> => {
       const res = await fetch(`/api/credentials?wallet=${encodeURIComponent(wallet)}`);
-      const data = (await res.json()) as { credentials?: CredentialInfo[] };
+      const data = (await res.json()) as { credentials?: CredentialInfo[]; error?: string; warning?: string };
+      if (data.warning) {
+        console.warn("[credentials]", data.warning);
+      }
+      if (data.error) {
+        throw new Error(data.error);
+      }
       return data.credentials ?? [];
     },
     enabled: !!wallet,

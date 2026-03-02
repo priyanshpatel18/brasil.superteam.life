@@ -17,7 +17,10 @@ import { CredentialImage } from "@/components/app/CredentialImage";
 import { useCredentialAsset, useTrackImageMap } from "@/hooks";
 import { toast } from "sonner";
 
-const cluster = process.env.NEXT_PUBLIC_CLUSTER ?? "devnet";
+const cluster =
+    process.env.NEXT_PUBLIC_SOLANA_CLUSTER ??
+    process.env.NEXT_PUBLIC_CLUSTER ??
+    "devnet";
 
 function truncateAddress(addr: string): string {
     if (addr.length <= 12) return addr;
@@ -25,11 +28,24 @@ function truncateAddress(addr: string): string {
 }
 
 function parseAttributes(
-    attrs: Array<{ key: string; value: string }> | Record<string, string> | undefined
+    attrs:
+        | Array<{ key?: string; trait_type?: string; value?: string | number }>
+        | Record<string, string | number>
+        | undefined
 ): Record<string, string> {
     if (!attrs) return {};
-    if (Array.isArray(attrs)) return Object.fromEntries(attrs.map((a) => [a.key, a.value]));
-    return attrs as Record<string, string>;
+    if (Array.isArray(attrs)) {
+        const out: Record<string, string> = {};
+        for (const item of attrs) {
+            const key = item.key ?? item.trait_type;
+            if (!key) continue;
+            out[key] = item.value != null ? String(item.value) : "";
+        }
+        return out;
+    }
+    return Object.fromEntries(
+        Object.entries(attrs).map(([k, v]) => [k, v != null ? String(v) : ""])
+    );
 }
 
 export default function CertificateDetailPage({

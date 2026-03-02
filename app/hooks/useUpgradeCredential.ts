@@ -9,7 +9,7 @@ import {
 } from "@/lib/services/backend-api";
 
 export interface UpgradeCredentialParams extends Partial<ApiParams> {
-  learner: string;
+  learner?: string;
   credentialAsset: string;
   credentialName: string;
   metadataUri: string;
@@ -25,7 +25,7 @@ export function useUpgradeCredential() {
 
   return useMutation({
     mutationFn: async (params: UpgradeCredentialParams) => {
-      const learner = params.learner ?? publicKey?.toBase58();
+      const learner = params.learner?.trim() || publicKey?.toBase58();
       if (!learner) throw new Error("Learner wallet required");
       const result = await upgradeCredential({
         courseId: params.courseId ?? "test-course-1",
@@ -40,8 +40,12 @@ export function useUpgradeCredential() {
       if (result.error) throw new Error(result.error);
       return result.tx!;
     },
-    onSuccess: () => {
+    onSuccess: (_, params) => {
+      const walletKey = publicKey?.toBase58() ?? params.learner?.trim() ?? "";
       void queryClient.invalidateQueries({ queryKey: ["enrollment"] });
+      if (walletKey) {
+        void queryClient.invalidateQueries({ queryKey: ["credentials", walletKey] });
+      }
       toast.success("Credential upgraded.");
     },
     onError: (err: Error) => {

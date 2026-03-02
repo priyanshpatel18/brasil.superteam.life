@@ -1,28 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import type { CredentialInfo } from "@/lib/services/learning-progress";
 import { getCredentialCollectionsFromDb } from "@/lib/services/indexing-db";
+import { getHeliusRpcConfig } from "@/lib/server/helius";
 
-const HELIUS_RPC = process.env.NEXT_PUBLIC_HELIUS_RPC ?? "";
-const HELIUS_API_KEY = process.env.HELIUS_API_KEY ?? "";
-const CLUSTER = process.env.NEXT_PUBLIC_CLUSTER ?? "devnet";
 const TRACK_COLLECTIONS_ENV = (process.env.NEXT_PUBLIC_CREDENTIAL_TRACK_COLLECTIONS ?? "")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
 const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:3001";
 const API_TOKEN = process.env.BACKEND_API_TOKEN ?? "";
-
-function getHeliusUrl(): string | null {
-  if (HELIUS_RPC) return HELIUS_RPC;
-  if (HELIUS_API_KEY) {
-    const base =
-      CLUSTER === "mainnet-beta"
-        ? "https://mainnet.helius-rpc.com"
-        : "https://devnet.helius-rpc.com";
-    return `${base}/?api-key=${HELIUS_API_KEY}`;
-  }
-  return null;
-}
 
 /** DAS asset shape (minimal) */
 interface DasAsset {
@@ -33,7 +19,7 @@ interface DasAsset {
     metadata?: {
       name?: string;
       uri?: string;
-      attributes?: Array<{ key: string; value: string }> | Record<string, string>;
+      attributes?: Array<{ key?: string; trait_type?: string; value?: string | number }> | Record<string, string | number>;
     };
     json_uri?: string;
     links?: { image?: string };
@@ -53,12 +39,41 @@ interface GetAssetsByOwnerResponse {
   error?: { message?: string };
 }
 
+function normalizeCollectionAddress(value: string | null | undefined): string | null {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : null;
+}
+
+function mergeCollectionAddresses(...inputs: Array<Array<string>>): string[] {
+  const set = new Set<string>();
+  for (const arr of inputs) {
+    for (const raw of arr) {
+      const normalized = normalizeCollectionAddress(raw);
+      if (normalized) set.add(normalized);
+    }
+  }
+  return [...set];
+}
+
 function parseAttributes(
-  attrs: Array<{ key: string; value: string }> | Record<string, string> | undefined
+  attrs:
+    | Array<{ key?: string; trait_type?: string; value?: string | number }>
+    | Record<string, string | number>
+    | undefined
 ): Record<string, string> {
   if (!attrs) return {};
-  if (Array.isArray(attrs)) return Object.fromEntries(attrs.map((a) => [a.key, a.value]));
-  return attrs as Record<string, string>;
+  if (Array.isArray(attrs)) {
+    const out: Record<string, string> = {};
+    for (const item of attrs) {
+      const key = item.key ?? item.trait_type;
+      if (!key) continue;
+      out[key] = item.value != null ? String(item.value) : "";
+    }
+    return out;
+  }
+  return Object.fromEntries(
+    Object.entries(attrs).map(([k, v]) => [k, v != null ? String(v) : ""])
+  );
 }
 
 function assetToCredentialInfo(asset: DasAsset): CredentialInfo {
@@ -85,19 +100,20 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ credentials: [], error: "wallet required" }, { status: 400 });
   }
 
-  const url = getHeliusUrl();
+  const helius = getHeliusRpcConfig();
+  const url = helius.url;
   if (!url) {
     return NextResponse.json({ credentials: [], error: "Helius RPC not configured" }, { status: 200 });
   }
 
-  let collections: string[] = [...TRACK_COLLECTIONS_ENV];
-  if (collections.length === 0) {
+  const indexedCollectionsPromise = (async (): Promise<string[]> => {
     const indexed = await getCredentialCollectionsFromDb();
-    if (indexed?.list?.length) {
-      collections = indexed.list.map((r) => r.collectionAddress).filter(Boolean);
-    }
-  }
-  if (collections.length === 0 && API_TOKEN) {
+    if (!indexed?.list?.length) return [];
+    return indexed.list.map((r) => r.collectionAddress);
+  })();
+
+  const backendCollectionsPromise = (async (): Promise<string[]> => {
+    if (!API_TOKEN) return [];
     try {
       const res = await fetch(
         `${BACKEND_URL.replace(/\/$/, "")}/v1/academy/credential-collections`,
@@ -106,13 +122,23 @@ export async function GET(request: NextRequest) {
       const data = (await res.json().catch(() => ({}))) as {
         list?: Array<{ collectionAddress: string }>;
       };
-      if (data.list?.length) {
-        collections = data.list.map((r) => r.collectionAddress).filter(Boolean);
-      }
+      if (!res.ok || !data.list?.length) return [];
+      return data.list.map((r) => r.collectionAddress);
     } catch {
-      // keep collections empty
+      return [];
     }
-  }
+  })();
+
+  const [indexedCollections, backendCollections] = await Promise.all([
+    indexedCollectionsPromise,
+    backendCollectionsPromise,
+  ]);
+
+  const collections = mergeCollectionAddresses(
+    TRACK_COLLECTIONS_ENV,
+    indexedCollections,
+    backendCollections
+  );
 
   if (collections.length === 0) {
     return NextResponse.json({ credentials: [], error: "No credential collections configured" }, { status: 200 });
@@ -133,14 +159,20 @@ export async function GET(request: NextRequest) {
     if (data.error || !data.result?.items) {
       return NextResponse.json({ credentials: [], error: data.error?.message ?? "DAS request failed" }, { status: 200 });
     }
+    const collectionSet = new Set(collections);
     const credentials = data.result.items
       .filter((item) =>
-        item.grouping?.some((g) => g.group_key === "collection" && collections.includes(g.group_value))
+        item.grouping?.some((g) => {
+          // Helius may expose collection under slightly different keys depending on asset type.
+          if (!g.group_key.toLowerCase().includes("collection")) return false;
+          const groupValue = normalizeCollectionAddress(g.group_value);
+          return groupValue ? collectionSet.has(groupValue) : false;
+        })
       )
       .map(assetToCredentialInfo);
-    return NextResponse.json({ credentials });
+    return NextResponse.json({ credentials, warning: helius.warning });
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Request failed";
-    return NextResponse.json({ credentials: [], error: msg }, { status: 200 });
+    return NextResponse.json({ credentials: [], error: msg, warning: helius.warning }, { status: 200 });
   }
 }
