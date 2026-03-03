@@ -1,28 +1,30 @@
 "use client";
 
-import { use, useState, useEffect } from "react";
-import { notFound } from "next/navigation";
-import Link from "next/link";
+import { ProgressBar } from "@/components/app";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { useEnroll, useEnrollment } from "@/hooks";
+import { countCompletedLessons, getCompletedAtFromEnrollment, getLessonFlagsFromEnrollment, isLessonComplete } from "@/lib/lesson-bitmap";
+import { urlFor } from "@/lib/sanity/client";
+import { getAllLessonsFlat, getCourseBySlug, getCourseIdForProgram } from "@/lib/services/content-service";
+import { useWallet } from "@solana/wallet-adapter-react";
 import {
     BookOpen,
-    Sparkles,
-    Clock,
     CheckCircle2,
-    Circle,
-    Lock,
     ChevronLeft,
-    Play,
+    Circle,
+    Clock,
     Code2,
+    Lock,
+    Play,
+    Sparkles,
     Trophy,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
-import { PageHeader, ProgressBar } from "@/components/app";
-import { getCourseBySlug, getAllLessonsFlat, getCourseIdForProgram } from "@/lib/services/content-service";
-import { useEnroll, useEnrollment } from "@/hooks";
-import { getLessonFlagsFromEnrollment, countCompletedLessons, isLessonComplete, getCompletedAtFromEnrollment } from "@/lib/lesson-bitmap";
-import { useWallet } from "@solana/wallet-adapter-react";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { use, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const difficultyColors = {
@@ -90,6 +92,19 @@ export default function CourseDetailPage({
 
             {/* Course header */}
             <div className="rounded-2xl border-4 border-border bg-card p-4 sm:p-6">
+                {course.image && (
+                    <div className="mb-4 overflow-hidden rounded-xl border border-border bg-muted/40">
+                        <Image
+                            src={urlFor(course.image).width(1024).height(512).url()}
+                            alt={course.title}
+                            width={256}
+                            height={128}
+                            className="h-full  w-full object-cover"
+                            priority={false}
+                        />
+                    </div>
+                )}
+
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                     <div className="space-y-3 min-w-0">
                         <div className="flex flex-wrap items-center gap-2">

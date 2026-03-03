@@ -8,6 +8,7 @@ import {
   useIsAdmin,
   useCredentialCollectionsList,
 } from "@/hooks";
+import { useAdminAuth } from "@/providers/AdminAuthProvider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,6 +21,9 @@ import {
 } from "@/components/ui/select";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { toast } from "sonner";
+
+const STUDIO_BASE = typeof window !== "undefined" ? `${window.location.origin}/studio` : "";
 
 type CourseAccount = {
   courseId: string;
@@ -32,9 +36,10 @@ type CourseAccount = {
 
 export default function AdminCoursesPage() {
   const { role } = useIsAdmin();
+  const { token } = useAdminAuth();
   const { data: courses } = useAllCourses();
   const { data: collectionsList } = useCredentialCollectionsList();
-  const { mutate: createCourse, isPending: creating } = useCreateCourse();
+  const { mutateAsync: createCourseAsync, isPending: creating } = useCreateCourse();
   const { mutate: updateCourse, isPending: updating } = useUpdateCourse();
   const collectionsData = Array.isArray(collectionsList) ? collectionsList : [];
   const [createForm, setCreateForm] = useState({
@@ -212,15 +217,49 @@ export default function AdminCoursesPage() {
                   variant="pixel"
                   className="font-game"
                   disabled={!createForm.courseId || collectionsData.length === 0 || creating}
-                  onClick={() =>
-                    createCourse({
-                      courseId: createForm.courseId,
-                      lessonCount: createForm.lessonCount,
-                      xpPerLesson: createForm.xpPerLesson,
-                      trackId: createForm.trackId,
-                      trackLevel: createForm.trackLevel,
-                    })
-                  }
+                  onClick={async () => {
+                    try {
+                      await createCourseAsync({
+                        courseId: createForm.courseId,
+                        lessonCount: createForm.lessonCount,
+                        xpPerLesson: createForm.xpPerLesson,
+                        trackId: createForm.trackId,
+                        trackLevel: createForm.trackLevel,
+                      });
+                      try {
+                        const stubRes = await fetch("/api/sanity/create-course-stub", {
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                          },
+                          body: JSON.stringify({
+                            courseId: createForm.courseId,
+                            lessonCount: createForm.lessonCount,
+                            xpPerLesson: createForm.xpPerLesson,
+                            title: createForm.courseId,
+                          }),
+                        });
+                        const stubData = (await stubRes.json()) as { _id?: string; error?: string };
+                        if (stubData._id) {
+                          toast.success("Course created. Edit content in Sanity.", {
+                            action: {
+                              label: "Open Studio",
+                              onClick: () =>
+                                window.open(
+                                  `${STUDIO_BASE}/desk/course;${stubData._id}`,
+                                  "_blank"
+                                ),
+                            },
+                          });
+                        }
+                      } catch {
+                        toast.warning("Course created on-chain; Sanity stub failed. Add SANITY_API_TOKEN or create course in Studio.");
+                      }
+                    } catch {
+                      // error already shown by useCreateCourse
+                    }
+                  }}
                 >
                   {creating ? "Creating…" : "Create"}
                 </Button>

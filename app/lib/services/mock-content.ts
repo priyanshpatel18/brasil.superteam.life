@@ -10,6 +10,7 @@ export interface MockCourse {
     xpPerLesson: number;
     duration: string;
     tags: string[];
+    image?: any;
     modules: MockModule[];
 }
 
@@ -26,6 +27,7 @@ export interface MockLesson {
     content: string;
     challengeCode?: string;
     challengeTests?: string;
+    image?: any;
 }
 
 export const MOCK_COURSES: MockCourse[] = [

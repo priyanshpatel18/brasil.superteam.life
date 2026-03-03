@@ -1,22 +1,18 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import {
-    BookOpen,
-    ArrowRight,
-    Clock,
-} from "lucide-react";
+import { DailyReward, ProgressBar, StreakCalendar } from "@/components/app";
 import { Button } from "@/components/ui/button";
-import { ProgressBar, PageHeader, StreakCalendar, DailyReward } from "@/components/app";
+import { useChallenges, useCourse, useEnrollment, useXpBalance } from "@/hooks";
+import { countCompletedLessons, getCompletedAtFromEnrollment, getLessonFlagsFromEnrollment } from "@/lib/lesson-bitmap";
+import { levelFromXp } from "@/lib/level";
+import type { MockCourse } from "@/lib/services/content-service";
 import { getAllCourses, getCourseIdForProgram, getEffectiveLessonCount } from "@/lib/services/content-service";
 import { getMockStreakData } from "@/lib/services/mock-leaderboard";
-import { useXpBalance, useCourse, useEnrollment } from "@/hooks";
-import { getLessonFlagsFromEnrollment, countCompletedLessons, getCompletedAtFromEnrollment } from "@/lib/lesson-bitmap";
-import { levelFromXp } from "@/lib/level";
-import { useState, useEffect } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { useTranslations } from "next-intl";
-import type { MockCourse } from "@/lib/services/content-service";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 function EnrolledCourseCard({ course }: { course: MockCourse }) {
     const programCourseId = getCourseIdForProgram(course);
@@ -55,7 +51,10 @@ function EnrolledCourseCard({ course }: { course: MockCourse }) {
 }
 
 export default function DashboardPage() {
+    const { publicKey } = useWallet();
+    const wallet = publicKey?.toBase58();
     const { data: xp } = useXpBalance();
+    const { data: challengesData } = useChallenges(wallet);
     const streak = getMockStreakData();
     const [courses, setCourses] = useState<MockCourse[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -116,6 +115,37 @@ export default function DashboardPage() {
                                 </div>
                             )}
                         </div>
+
+                        {/* Daily challenges */}
+                        {wallet && (challengesData?.challenges?.length ?? 0) > 0 && (
+                            <div className="mt-6 sm:mt-8">
+                                <h2 className="font-game text-3xl sm:text-4xl mb-2">Daily challenges</h2>
+                                <div className="space-y-3">
+                                    {challengesData!.challenges.slice(0, 3).map((ch) => (
+                                        <Link
+                                            key={ch.id}
+                                            href="/challenges"
+                                            className="block p-3 sm:p-4 border rounded-xl bg-card hover:bg-accent/50 transition-colors"
+                                        >
+                                            <div className="flex items-center justify-between gap-2">
+                                                <span className="font-game text-base sm:text-lg line-clamp-1">
+                                                    {ch.completed ? "✓ " : ""}{ch.title}
+                                                    {ch.xpReward > 0 && (
+                                                        <span className="text-yellow-400 ml-1">+{ch.xpReward} XP</span>
+                                                    )}
+                                                </span>
+                                                <span className="font-game text-sm text-muted-foreground shrink-0">View all →</span>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                                <Link href="/challenges" className="inline-block mt-2">
+                                    <Button variant="outline" size="sm" className="font-game">
+                                        All challenges
+                                    </Button>
+                                </Link>
+                            </div>
+                        )}
 
                         {/* Explore More */}
                         <div className="mt-6 sm:mt-8">

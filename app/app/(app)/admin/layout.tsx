@@ -1,27 +1,28 @@
 "use client";
 
+import { AdminLoginGate } from "@/components/app/AdminLoginGate";
 import { useIsAdmin } from "@/hooks";
+import { cn } from "@/lib/utils";
+import {
+  Award,
+  BarChart2,
+  BookOpen,
+  Key,
+  KeyRound,
+  LayoutDashboard,
+  Settings,
+  Target,
+} from "lucide-react";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
-import Link from "next/link";
-import {
-  Settings,
-  BookOpen,
-  KeyRound,
-  Award,
-  ChevronRight,
-  Key,
-  BarChart2,
-  LayoutDashboard,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-import { AdminLoginGate } from "@/components/app/AdminLoginGate";
 
 const adminNavItems = [
   { href: "/admin", label: "Overview", exact: true },
   { href: "/admin/config", label: "Config", icon: Settings },
   { href: "/admin/courses", label: "Courses", icon: BookOpen },
   { href: "/admin/credentials", label: "Credentials", icon: Award },
+  { href: "/admin/challenges", label: "Challenges", icon: Target },
   { href: "/admin/minters", label: "Minters", icon: KeyRound },
   { href: "/admin/achievements", label: "Achievements", icon: Award },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart2 },

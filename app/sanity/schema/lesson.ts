@@ -44,6 +44,21 @@ export const lesson = defineType({
       validation: Rule => Rule.required()
     }),
     defineField({
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt text',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
       name: 'challengeCode',
       title: 'Challenge Starter Code',
       type: 'text',

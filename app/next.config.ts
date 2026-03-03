@@ -25,6 +25,16 @@ const nextConfig: NextConfig = {
         hostname: "**.mypinata.cloud",
         pathname: "/ipfs/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/images/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**.sanity.io",
+        pathname: "/images/`**",
+      }
     ],
   },
   webpack: (config) => {

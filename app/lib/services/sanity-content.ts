@@ -32,6 +32,7 @@ interface SanityLesson {
   content: string
   challengeCode?: string
   challengeTests?: string
+  image?: any
 }
 
 // GROQ queries
@@ -57,7 +58,8 @@ const COURSE_QUERY = `*[_type == "course" && published == true] | order(_created
       duration,
       content,
       challengeCode,
-      challengeTests
+      challengeTests,
+      image
     }
   }
 }`
@@ -84,7 +86,8 @@ const COURSE_BY_SLUG_QUERY = `*[_type == "course" && slug.current == $slug && pu
       duration,
       content,
       challengeCode,
-      challengeTests
+      challengeTests,
+      image
     }
   }
 }`
@@ -110,6 +113,7 @@ function transformCourse(sanityCourse: SanityCourse): MockCourse {
     xpPerLesson: sanityCourse.xpPerLesson,
     duration: sanityCourse.duration,
     tags: sanityCourse.tags || [],
+    image: sanityCourse.image,
     modules: sanityCourse.modules.map(transformModule),
   }
 }
@@ -130,6 +134,7 @@ function transformLesson(sanityLesson: SanityLesson): MockLesson {
     content: sanityLesson.content,
     challengeCode: sanityLesson.challengeCode,
     challengeTests: sanityLesson.challengeTests,
+    image: sanityLesson.image,
   }
 }
 

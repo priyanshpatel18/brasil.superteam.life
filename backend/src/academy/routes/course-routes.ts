@@ -6,6 +6,7 @@ import {
   requireBackendProgram,
   requireProviderPublicKey,
 } from "@/academy/shared.js";
+import { createNotification } from "@/academy/notifications.js";
 import { badRequest, withRouteErrorHandling } from "@/lib/errors.js";
 import {
   readFixedLengthNumberArrayOrNull,
@@ -148,6 +149,19 @@ export function registerCourseRoutes(app: Hono): void {
         creator: creator.toBase58(),
         txSignature: tx,
       }).catch((err) => console.error("indexCourse:", err));
+
+      await createNotification({
+        targetRole: "learner",
+        type: "new_course",
+        wallet: null,
+        data: {
+          courseId,
+          trackId: trackId ?? 1,
+          trackLevel: trackLevel ?? 1,
+          lessonCount,
+          xpPerLesson,
+        },
+      });
 
       return c.json({ tx });
     })

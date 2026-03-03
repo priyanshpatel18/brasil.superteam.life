@@ -19,7 +19,8 @@ async function main() {
   });
 
   await syncLeaderboardFromUsers().catch((err) => console.error("Initial leaderboard sync:", err));
-  cron.schedule("0 * * * *", () => {
+  // Daily leaderboard + XP snapshot notifications.
+  cron.schedule("0 0 * * *", () => {
     syncLeaderboardFromUsers().catch((err) => console.error("Leaderboard cron:", err));
   });
 

@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { getPrisma } from "@/lib/prisma.js";
 import { Prisma } from "@/generated/prisma/index.js";
+import { createUserNotification } from "@/academy/notifications.js";
 
 export async function syncLeaderboardFromUsers(): Promise<void> {
   const prisma = getPrisma();
@@ -13,8 +14,32 @@ export async function syncLeaderboardFromUsers(): Promise<void> {
       courses_completed = EXCLUDED.courses_completed,
       updated_at = NOW()
   `);
-  const count = await prisma.user.count();
-  console.log(`Synced ${count} leaderboard entries from users`);
+  const entries = await prisma.leaderboardEntry.findMany({
+    orderBy: { totalXp: "desc" },
+  });
+  console.log(`Synced ${entries.length} leaderboard entries from users`);
+
+  // Best-effort daily leaderboard notifications for top users.
+  const maxNotified = 100;
+  const topEntries = entries.slice(0, maxNotified);
+  await Promise.all(
+    topEntries.map((entry, index) =>
+      createUserNotification({
+        wallet: entry.wallet,
+        type: "leaderboard_update",
+        data: {
+          position: index + 1,
+          totalXp: entry.totalXp,
+          coursesCompleted: entry.coursesCompleted,
+        },
+      }).catch((err) =>
+        console.error("leaderboard notification failed", {
+          wallet: entry.wallet,
+          error: String(err),
+        })
+      )
+    )
+  );
 }
 
 async function main(): Promise<void> {

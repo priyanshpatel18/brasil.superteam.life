@@ -173,9 +173,64 @@ exports.Prisma.LeaderboardEntryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SeasonScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  name: 'name',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  startAt: 'startAt',
+  endAt: 'endAt',
+  createdAt: 'createdAt',
+  sanityId: 'sanityId'
+};
+
+exports.Prisma.ChallengeScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  description: 'description',
+  type: 'type',
+  config: 'config',
+  xpReward: 'xpReward',
+  seasonId: 'seasonId',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  createdAt: 'createdAt',
+  sanityId: 'sanityId'
+};
+
+exports.Prisma.UserChallengeCompletionScalarFieldEnum = {
+  wallet: 'wallet',
+  challengeId: 'challengeId',
+  completionDay: 'completionDay',
+  completedAt: 'completedAt',
+  metadata: 'metadata',
+  submissionLink: 'submissionLink'
+};
+
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  wallet: 'wallet',
+  targetRole: 'targetRole',
+  type: 'type',
+  data: 'data',
+  readAt: 'readAt',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -188,6 +243,12 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
 
 exports.Prisma.ModelName = {
   CredentialCollection: 'CredentialCollection',
@@ -195,7 +256,11 @@ exports.Prisma.ModelName = {
   Course: 'Course',
   Enrollment: 'Enrollment',
   LessonCompletion: 'LessonCompletion',
-  LeaderboardEntry: 'LeaderboardEntry'
+  LeaderboardEntry: 'LeaderboardEntry',
+  Season: 'Season',
+  Challenge: 'Challenge',
+  UserChallengeCompletion: 'UserChallengeCompletion',
+  Notification: 'Notification'
 };
 
 /**

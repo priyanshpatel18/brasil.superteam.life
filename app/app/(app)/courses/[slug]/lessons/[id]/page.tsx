@@ -3,6 +3,7 @@
 import { use, useState, useEffect, useMemo } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
     ChevronLeft,
     ChevronRight,
@@ -24,6 +25,7 @@ import {
 import { useEnrollment, useCompleteLesson, useCourse, useCredentialCollectionsList } from "@/hooks";
 import { getLessonFlagsFromEnrollment, isLessonComplete, getCompletedAtFromEnrollment } from "@/lib/lesson-bitmap";
 import { getEffectiveLessonCount } from "@/lib/services/content-service";
+import { urlFor } from "@/lib/sanity/client";
 import { toast } from "sonner";
 
 function toSafeNumber(value: unknown): number | null {
@@ -160,7 +162,7 @@ export default function LessonPage({
                 </div>
 
                 {/* Main content */}
-                <div className="flex flex-1 flex-col md:flex-row overflow-hidden">
+                <div className="flex flex-1 flex-col md:flex-row overflow-hidden w-full max-w-5xl mx-auto">
                     {/* Left: Content pane */}
                     <div
                         className={`flex flex-col overflow-y-auto border-b md:border-b-0 md:border-r border-border bg-background ${isChallenge ? "w-full md:w-1/2 md:min-w-0" : "w-full min-w-0"
@@ -188,6 +190,19 @@ export default function LessonPage({
                             </div>
 
                             <h1 className="text-xl font-bold">{lesson.title}</h1>
+
+                            {lesson.image && (
+                                <div className="mt-4 overflow-hidden rounded-xl border border-border bg-muted/40">
+                                    <Image
+                                        src={urlFor(lesson.image).width(1024).height(512).url()}
+                                        alt={lesson.image.alt ?? lesson.title}
+                                        width={1024}
+                                        height={512}
+                                        className="h-auto w-full object-cover"
+                                        priority={false}
+                                    />
+                                </div>
+                            )}
 
                             <div className="prose prose-sm dark:prose-invert max-w-none">
                                 <MarkdownContent content={lesson.content} />

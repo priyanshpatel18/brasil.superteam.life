@@ -7,6 +7,8 @@ import { getCompletedAtFromEnrollment } from "@/lib/lesson-bitmap";
 import { getAllCourses, getCourseIdForProgram, type MockCourse } from "@/lib/services/content-service";
 import { BookOpen, CheckCircle2, Gauge, Search, Sparkles } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { urlFor } from "@/lib/sanity/client";
 import { useEffect, useMemo, useState } from "react";
 
 function CourseCard({ course }: { course: MockCourse }) {
@@ -17,35 +19,49 @@ function CourseCard({ course }: { course: MockCourse }) {
 
     return (
         <Link href={`/courses/${course.slug}`} className="block h-full">
-            <div className="relative border-4 rounded-2xl border-border hover:bg-accent cursor-pointer h-full transition-colors">
+            <div className="relative h-full cursor-pointer overflow-hidden rounded-2xl border-4 border-border bg-card transition-colors hover:bg-accent">
                 {isCompleted && (
-                    <div className="absolute top-3 right-3 p-1.5 text-green-600 dark:text-green-400">
+                    <div className="absolute top-3 right-3 z-10 p-1.5 text-green-600 dark:text-green-400">
                         <CheckCircle2 className="h-5 w-5" />
                     </div>
                 )}
-                <div className="p-4 h-full flex flex-col font-game">
+
+                {course.image && (
+                    <div className="relative h-32 w-full border-b border-border bg-muted/40 sm:h-36">
+                        <Image
+                            src={urlFor(course.image).width(1024).height(512).url()}
+                            alt={course.title}
+                            width={512}
+                            height={256}
+                            className="h-full w-full object-cover"
+                            priority={false}
+                        />
+                    </div>
+                )}
+
+                <div className="flex h-full flex-col p-4 font-game">
                     <div className="min-w-0">
                         <h2 className="font-game text-2xl sm:text-3xl line-clamp-2">
                             {course.title}
                         </h2>
 
-                        <p className="font-game text-lg sm:text-xl text-muted-foreground line-clamp-2 mt-1">
+                        <p className="mt-1 line-clamp-2 font-game text-lg sm:text-xl text-muted-foreground">
                             {course.description}
                         </p>
                     </div>
 
-                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-auto pt-4">
-                        <h2 className="bg-muted gap-2 font-game text-md sm:text-lg p-1.5 px-4 rounded-2xl inline-flex items-center whitespace-nowrap">
+                    <div className="mt-auto flex flex-wrap items-center gap-2 sm:gap-3 pt-4">
+                        <h2 className="inline-flex items-center whitespace-nowrap rounded-2xl bg-muted p-1.5 px-4 font-game text-md sm:text-lg gap-2">
                             <Gauge className="h-5 w-5" />
                             {course.difficulty}
                         </h2>
 
-                        <span className="font-game text-base sm:text-lg text-muted-foreground inline-flex items-center gap-1 whitespace-nowrap">
+                        <span className="inline-flex items-center gap-1 whitespace-nowrap font-game text-base sm:text-lg text-muted-foreground">
                             <BookOpen className="h-5 w-5" />
                             {course.lessonCount} lessons
                         </span>
 
-                        <span className="font-game text-base sm:text-lg text-yellow-400 inline-flex items-center gap-1 whitespace-nowrap">
+                        <span className="inline-flex items-center gap-1 whitespace-nowrap font-game text-base sm:text-lg text-yellow-400">
                             <Sparkles className="h-5 w-5" />
                             {course.lessonCount * course.xpPerLesson} XP
                         </span>

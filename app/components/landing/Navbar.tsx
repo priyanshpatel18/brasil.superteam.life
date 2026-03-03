@@ -1,14 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import { Menu } from "lucide-react";
-import { ThemeToggle } from "@/components/app/ThemeToggle";
-import { WalletConnectButton } from "@/components/wallet/WalletConnectButton";
 import { LanguageSwitcher } from "@/components/app/LanguageSwitcher";
-import { useIsAdmin } from "@/hooks";
-import { useTranslations } from "next-intl";
+import { ThemeToggle } from "@/components/app/ThemeToggle";
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -16,8 +10,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+import { WalletConnectButton } from "@/components/wallet/WalletConnectButton";
+import { useIsAdmin } from "@/hooks";
+import { Menu } from "lucide-react";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
+import { NotificationBell } from "@/components/app/NotificationBell";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -102,6 +103,9 @@ export function Navbar() {
               <div className="hidden sm:flex items-center gap-2 sm:gap-4">
                 <LanguageSwitcher />
                 <ThemeToggle />
+              </div>
+              <div className="hidden sm:flex">
+                <NotificationBell />
               </div>
               <WalletConnectButton />
 

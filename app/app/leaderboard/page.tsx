@@ -1,8 +1,8 @@
 "use client";
 
-import { useWallet } from "@solana/wallet-adapter-react";
 import { AppShell } from "@/components/app/AppShell";
 import { LeaderboardContent } from "@/components/app/LeaderboardContent";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 /**
  * Public leaderboard at /leaderboard.

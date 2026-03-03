@@ -248,3 +248,97 @@ export async function uploadCredentialMetadata(
     return { error: msg };
   }
 }
+
+export interface CreateSeasonParams {
+  slug: string;
+  name: string;
+  description?: string;
+  imageUrl?: string;
+  startAt: string;
+  endAt: string;
+}
+
+export interface UpdateSeasonParams {
+  id: number;
+  slug?: string;
+  name?: string;
+  description?: string;
+  imageUrl?: string;
+  startAt?: string;
+  endAt?: string;
+  sanityId?: string | null;
+}
+
+export interface CreateChallengeParams {
+  slug: string;
+  title: string;
+  description?: string;
+  type: "daily" | "seasonal";
+  config: Record<string, unknown>;
+  xpReward?: number;
+  seasonId?: number;
+  startsAt?: string;
+  endsAt?: string;
+}
+
+export interface UpdateChallengeParams {
+  id: number;
+  slug?: string;
+  title?: string;
+  description?: string;
+  type?: "daily" | "seasonal";
+  config?: Record<string, unknown>;
+  xpReward?: number;
+  seasonId?: number | null;
+  startsAt?: string | null;
+  endsAt?: string | null;
+  sanityId?: string | null;
+}
+
+export async function createSeason(
+  params: CreateSeasonParams,
+  token?: string | null
+): Promise<BackendApiResponse & { id?: number }> {
+  return postBff("/create-season", params, token) as Promise<BackendApiResponse & { id?: number }>;
+}
+
+export async function updateSeason(
+  params: UpdateSeasonParams,
+  token?: string | null
+): Promise<BackendApiResponse> {
+  return postBff("/update-season", params, token);
+}
+
+export async function createChallenge(
+  params: CreateChallengeParams,
+  token?: string | null
+): Promise<BackendApiResponse & { id?: number }> {
+  return postBff("/create-challenge", params, token) as Promise<BackendApiResponse & { id?: number }>;
+}
+
+export async function updateChallenge(
+  params: UpdateChallengeParams,
+  token?: string | null
+): Promise<BackendApiResponse> {
+  return postBff("/update-challenge", params, token);
+}
+
+export async function syncSanityChallenges(
+  token?: string | null
+): Promise<
+  BackendApiResponse & {
+    seasonsCreated?: number;
+    seasonsUpdated?: number;
+    challengesCreated?: number;
+    challengesUpdated?: number;
+  }
+> {
+  return postBff("/sync-sanity-challenges", {}, token) as Promise<
+    BackendApiResponse & {
+      seasonsCreated?: number;
+      seasonsUpdated?: number;
+      challengesCreated?: number;
+      challengesUpdated?: number;
+    }
+  >;
+}

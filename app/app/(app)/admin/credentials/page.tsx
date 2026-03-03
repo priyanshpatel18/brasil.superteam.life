@@ -25,6 +25,7 @@ import Link from "next/link";
 import { Award } from "lucide-react";
 import { uploadCredentialMetadata } from "@/lib/services/backend-api";
 import { toast } from "sonner";
+import { useAdminAuth } from "@/providers/AdminAuthProvider";
 
 type CourseAccount = {
   courseId: string;
@@ -41,8 +42,11 @@ type TrackInfo = {
 
 const PLACEHOLDER_URI = process.env.NEXT_PUBLIC_CREDENTIAL_PLACEHOLDER_URI ?? "";
 
+const STUDIO_BASE = typeof window !== "undefined" ? `${window.location.origin}/studio` : "";
+
 export default function AdminCredentialsPage() {
   const { role } = useIsAdmin();
+  const { token } = useAdminAuth();
   const { data: courses } = useAllCourses();
   const { mutateAsync: issueCredential, isPending: issuing } = useIssueCredential();
   const { mutateAsync: upgradeCredential, isPending: upgrading } = useUpgradeCredential();
@@ -60,6 +64,8 @@ export default function AdminCredentialsPage() {
     learner: "",
     trackCollection: "",
   });
+  const [trackStubForm, setTrackStubForm] = useState({ trackId: 1, name: "", slug: "" });
+  const [creatingTrackStub, setCreatingTrackStub] = useState(false);
 
   const { data: backendCollectionsData } = useQuery({
     queryKey: ["credential-collections"],
@@ -321,6 +327,86 @@ export default function AdminCredentialsPage() {
           </div>
         </div>
       )}
+
+      <div className="p-4 sm:p-6 rounded-2xl border-4 border-border bg-card">
+        <h2 className="font-game text-xl mb-1">Create track (Sanity)</h2>
+        <p className="font-game text-muted-foreground text-sm mb-4">
+          Create a track document in Sanity so it appears in dropdowns. Edit in Studio to set description, image, and trackCollection (Metaplex Core).
+        </p>
+        <div className="flex flex-wrap items-end gap-4">
+          <div className="space-y-2 min-w-[100px]">
+            <Label className="font-game">Track ID</Label>
+            <Input
+              type="number"
+              min={1}
+              value={trackStubForm.trackId}
+              onChange={(e) =>
+                setTrackStubForm((f) => ({ ...f, trackId: parseInt(e.target.value, 10) || 1 }))
+              }
+            />
+          </div>
+          <div className="space-y-2 min-w-[180px]">
+            <Label className="font-game">Name</Label>
+            <Input
+              placeholder="e.g. Solana Track"
+              value={trackStubForm.name}
+              onChange={(e) => setTrackStubForm((f) => ({ ...f, name: e.target.value }))}
+            />
+          </div>
+          <div className="space-y-2 min-w-[180px]">
+            <Label className="font-game">Slug (optional)</Label>
+            <Input
+              placeholder="e.g. solana-track"
+              value={trackStubForm.slug}
+              onChange={(e) => setTrackStubForm((f) => ({ ...f, slug: e.target.value }))}
+            />
+          </div>
+          <Button
+            variant="outline"
+            className="font-game"
+            disabled={!trackStubForm.name.trim() || creatingTrackStub}
+            onClick={async () => {
+              setCreatingTrackStub(true);
+              try {
+                const res = await fetch("/api/sanity/create-track-stub", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                  },
+                  body: JSON.stringify({
+                    trackId: trackStubForm.trackId,
+                    name: trackStubForm.name.trim(),
+                    slug: trackStubForm.slug.trim() || undefined,
+                  }),
+                });
+                const data = (await res.json()) as { _id?: string; error?: string };
+                if (!res.ok || data.error) throw new Error(data.error ?? "Failed");
+                if (data._id) {
+                  toast.success("Track created in Sanity. Edit details in Studio.", {
+                    action: {
+                      label: "Open Studio",
+                      onClick: () =>
+                        window.open(`${STUDIO_BASE}/desk/track;${data._id}`, "_blank"),
+                    },
+                  });
+                  setTrackStubForm((f) => ({ ...f, name: "", slug: "" }));
+                  fetch("/api/tracks")
+                    .then((r) => r.json())
+                    .then((d: { tracks?: TrackInfo[] }) => setTracks(d.tracks ?? []))
+                    .catch(() => {});
+                }
+              } catch (err) {
+                toast.error(err instanceof Error ? err.message : "Failed to create track in Sanity");
+              } finally {
+                setCreatingTrackStub(false);
+              }
+            }}
+          >
+            {creatingTrackStub ? "Creating…" : "Create track in Sanity"}
+          </Button>
+        </div>
+      </div>
 
       {canUseCredentials && (
         <div className="p-4 sm:p-6 rounded-2xl border-4 border-border bg-card">

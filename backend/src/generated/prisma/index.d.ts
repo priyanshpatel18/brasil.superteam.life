@@ -43,6 +43,26 @@ export type LessonCompletion = $Result.DefaultSelection<Prisma.$LessonCompletion
  * 
  */
 export type LeaderboardEntry = $Result.DefaultSelection<Prisma.$LeaderboardEntryPayload>
+/**
+ * Model Season
+ * 
+ */
+export type Season = $Result.DefaultSelection<Prisma.$SeasonPayload>
+/**
+ * Model Challenge
+ * 
+ */
+export type Challenge = $Result.DefaultSelection<Prisma.$ChallengePayload>
+/**
+ * Model UserChallengeCompletion
+ * 
+ */
+export type UserChallengeCompletion = $Result.DefaultSelection<Prisma.$UserChallengeCompletionPayload>
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -224,6 +244,46 @@ export class PrismaClient<
     * ```
     */
   get leaderboardEntry(): Prisma.LeaderboardEntryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.season`: Exposes CRUD operations for the **Season** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Seasons
+    * const seasons = await prisma.season.findMany()
+    * ```
+    */
+  get season(): Prisma.SeasonDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.challenge`: Exposes CRUD operations for the **Challenge** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Challenges
+    * const challenges = await prisma.challenge.findMany()
+    * ```
+    */
+  get challenge(): Prisma.ChallengeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userChallengeCompletion`: Exposes CRUD operations for the **UserChallengeCompletion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserChallengeCompletions
+    * const userChallengeCompletions = await prisma.userChallengeCompletion.findMany()
+    * ```
+    */
+  get userChallengeCompletion(): Prisma.UserChallengeCompletionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notification`: Exposes CRUD operations for the **Notification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Notifications
+    * const notifications = await prisma.notification.findMany()
+    * ```
+    */
+  get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -663,7 +723,11 @@ export namespace Prisma {
     Course: 'Course',
     Enrollment: 'Enrollment',
     LessonCompletion: 'LessonCompletion',
-    LeaderboardEntry: 'LeaderboardEntry'
+    LeaderboardEntry: 'LeaderboardEntry',
+    Season: 'Season',
+    Challenge: 'Challenge',
+    UserChallengeCompletion: 'UserChallengeCompletion',
+    Notification: 'Notification'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -679,7 +743,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "credentialCollection" | "user" | "course" | "enrollment" | "lessonCompletion" | "leaderboardEntry"
+      modelProps: "credentialCollection" | "user" | "course" | "enrollment" | "lessonCompletion" | "leaderboardEntry" | "season" | "challenge" | "userChallengeCompletion" | "notification"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1127,6 +1191,302 @@ export namespace Prisma {
           }
         }
       }
+      Season: {
+        payload: Prisma.$SeasonPayload<ExtArgs>
+        fields: Prisma.SeasonFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SeasonFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeasonPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SeasonFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeasonPayload>
+          }
+          findFirst: {
+            args: Prisma.SeasonFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeasonPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SeasonFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeasonPayload>
+          }
+          findMany: {
+            args: Prisma.SeasonFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeasonPayload>[]
+          }
+          create: {
+            args: Prisma.SeasonCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeasonPayload>
+          }
+          createMany: {
+            args: Prisma.SeasonCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SeasonCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeasonPayload>[]
+          }
+          delete: {
+            args: Prisma.SeasonDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeasonPayload>
+          }
+          update: {
+            args: Prisma.SeasonUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeasonPayload>
+          }
+          deleteMany: {
+            args: Prisma.SeasonDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SeasonUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SeasonUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeasonPayload>[]
+          }
+          upsert: {
+            args: Prisma.SeasonUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SeasonPayload>
+          }
+          aggregate: {
+            args: Prisma.SeasonAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSeason>
+          }
+          groupBy: {
+            args: Prisma.SeasonGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SeasonGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SeasonCountArgs<ExtArgs>
+            result: $Utils.Optional<SeasonCountAggregateOutputType> | number
+          }
+        }
+      }
+      Challenge: {
+        payload: Prisma.$ChallengePayload<ExtArgs>
+        fields: Prisma.ChallengeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ChallengeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChallengePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ChallengeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChallengePayload>
+          }
+          findFirst: {
+            args: Prisma.ChallengeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChallengePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ChallengeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChallengePayload>
+          }
+          findMany: {
+            args: Prisma.ChallengeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChallengePayload>[]
+          }
+          create: {
+            args: Prisma.ChallengeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChallengePayload>
+          }
+          createMany: {
+            args: Prisma.ChallengeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ChallengeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChallengePayload>[]
+          }
+          delete: {
+            args: Prisma.ChallengeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChallengePayload>
+          }
+          update: {
+            args: Prisma.ChallengeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChallengePayload>
+          }
+          deleteMany: {
+            args: Prisma.ChallengeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ChallengeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ChallengeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChallengePayload>[]
+          }
+          upsert: {
+            args: Prisma.ChallengeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChallengePayload>
+          }
+          aggregate: {
+            args: Prisma.ChallengeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateChallenge>
+          }
+          groupBy: {
+            args: Prisma.ChallengeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ChallengeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ChallengeCountArgs<ExtArgs>
+            result: $Utils.Optional<ChallengeCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserChallengeCompletion: {
+        payload: Prisma.$UserChallengeCompletionPayload<ExtArgs>
+        fields: Prisma.UserChallengeCompletionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserChallengeCompletionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserChallengeCompletionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserChallengeCompletionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserChallengeCompletionPayload>
+          }
+          findFirst: {
+            args: Prisma.UserChallengeCompletionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserChallengeCompletionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserChallengeCompletionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserChallengeCompletionPayload>
+          }
+          findMany: {
+            args: Prisma.UserChallengeCompletionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserChallengeCompletionPayload>[]
+          }
+          create: {
+            args: Prisma.UserChallengeCompletionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserChallengeCompletionPayload>
+          }
+          createMany: {
+            args: Prisma.UserChallengeCompletionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserChallengeCompletionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserChallengeCompletionPayload>[]
+          }
+          delete: {
+            args: Prisma.UserChallengeCompletionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserChallengeCompletionPayload>
+          }
+          update: {
+            args: Prisma.UserChallengeCompletionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserChallengeCompletionPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserChallengeCompletionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserChallengeCompletionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserChallengeCompletionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserChallengeCompletionPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserChallengeCompletionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserChallengeCompletionPayload>
+          }
+          aggregate: {
+            args: Prisma.UserChallengeCompletionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserChallengeCompletion>
+          }
+          groupBy: {
+            args: Prisma.UserChallengeCompletionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserChallengeCompletionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserChallengeCompletionCountArgs<ExtArgs>
+            result: $Utils.Optional<UserChallengeCompletionCountAggregateOutputType> | number
+          }
+        }
+      }
+      Notification: {
+        payload: Prisma.$NotificationPayload<ExtArgs>
+        fields: Prisma.NotificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NotificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NotificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findFirst: {
+            args: Prisma.NotificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NotificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findMany: {
+            args: Prisma.NotificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          create: {
+            args: Prisma.NotificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          createMany: {
+            args: Prisma.NotificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NotificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          delete: {
+            args: Prisma.NotificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          update: {
+            args: Prisma.NotificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.NotificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NotificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NotificationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          upsert: {
+            args: Prisma.NotificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotification>
+          }
+          groupBy: {
+            args: Prisma.NotificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NotificationCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1241,6 +1601,10 @@ export namespace Prisma {
     enrollment?: EnrollmentOmit
     lessonCompletion?: LessonCompletionOmit
     leaderboardEntry?: LeaderboardEntryOmit
+    season?: SeasonOmit
+    challenge?: ChallengeOmit
+    userChallengeCompletion?: UserChallengeCompletionOmit
+    notification?: NotificationOmit
   }
 
   /* Types for Logging */
@@ -1384,6 +1748,68 @@ export namespace Prisma {
    */
   export type CourseCountOutputTypeCountEnrollmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EnrollmentWhereInput
+  }
+
+
+  /**
+   * Count Type SeasonCountOutputType
+   */
+
+  export type SeasonCountOutputType = {
+    challenges: number
+  }
+
+  export type SeasonCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    challenges?: boolean | SeasonCountOutputTypeCountChallengesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SeasonCountOutputType without action
+   */
+  export type SeasonCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SeasonCountOutputType
+     */
+    select?: SeasonCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SeasonCountOutputType without action
+   */
+  export type SeasonCountOutputTypeCountChallengesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChallengeWhereInput
+  }
+
+
+  /**
+   * Count Type ChallengeCountOutputType
+   */
+
+  export type ChallengeCountOutputType = {
+    completions: number
+  }
+
+  export type ChallengeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    completions?: boolean | ChallengeCountOutputTypeCountCompletionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ChallengeCountOutputType without action
+   */
+  export type ChallengeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChallengeCountOutputType
+     */
+    select?: ChallengeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ChallengeCountOutputType without action
+   */
+  export type ChallengeCountOutputTypeCountCompletionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserChallengeCompletionWhereInput
   }
 
 
@@ -7967,6 +8393,4550 @@ export namespace Prisma {
 
 
   /**
+   * Model Season
+   */
+
+  export type AggregateSeason = {
+    _count: SeasonCountAggregateOutputType | null
+    _avg: SeasonAvgAggregateOutputType | null
+    _sum: SeasonSumAggregateOutputType | null
+    _min: SeasonMinAggregateOutputType | null
+    _max: SeasonMaxAggregateOutputType | null
+  }
+
+  export type SeasonAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SeasonSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SeasonMinAggregateOutputType = {
+    id: number | null
+    slug: string | null
+    name: string | null
+    description: string | null
+    imageUrl: string | null
+    startAt: Date | null
+    endAt: Date | null
+    createdAt: Date | null
+    sanityId: string | null
+  }
+
+  export type SeasonMaxAggregateOutputType = {
+    id: number | null
+    slug: string | null
+    name: string | null
+    description: string | null
+    imageUrl: string | null
+    startAt: Date | null
+    endAt: Date | null
+    createdAt: Date | null
+    sanityId: string | null
+  }
+
+  export type SeasonCountAggregateOutputType = {
+    id: number
+    slug: number
+    name: number
+    description: number
+    imageUrl: number
+    startAt: number
+    endAt: number
+    createdAt: number
+    sanityId: number
+    _all: number
+  }
+
+
+  export type SeasonAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type SeasonSumAggregateInputType = {
+    id?: true
+  }
+
+  export type SeasonMinAggregateInputType = {
+    id?: true
+    slug?: true
+    name?: true
+    description?: true
+    imageUrl?: true
+    startAt?: true
+    endAt?: true
+    createdAt?: true
+    sanityId?: true
+  }
+
+  export type SeasonMaxAggregateInputType = {
+    id?: true
+    slug?: true
+    name?: true
+    description?: true
+    imageUrl?: true
+    startAt?: true
+    endAt?: true
+    createdAt?: true
+    sanityId?: true
+  }
+
+  export type SeasonCountAggregateInputType = {
+    id?: true
+    slug?: true
+    name?: true
+    description?: true
+    imageUrl?: true
+    startAt?: true
+    endAt?: true
+    createdAt?: true
+    sanityId?: true
+    _all?: true
+  }
+
+  export type SeasonAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Season to aggregate.
+     */
+    where?: SeasonWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Seasons to fetch.
+     */
+    orderBy?: SeasonOrderByWithRelationInput | SeasonOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SeasonWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Seasons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Seasons.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Seasons
+    **/
+    _count?: true | SeasonCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SeasonAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SeasonSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SeasonMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SeasonMaxAggregateInputType
+  }
+
+  export type GetSeasonAggregateType<T extends SeasonAggregateArgs> = {
+        [P in keyof T & keyof AggregateSeason]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSeason[P]>
+      : GetScalarType<T[P], AggregateSeason[P]>
+  }
+
+
+
+
+  export type SeasonGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SeasonWhereInput
+    orderBy?: SeasonOrderByWithAggregationInput | SeasonOrderByWithAggregationInput[]
+    by: SeasonScalarFieldEnum[] | SeasonScalarFieldEnum
+    having?: SeasonScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SeasonCountAggregateInputType | true
+    _avg?: SeasonAvgAggregateInputType
+    _sum?: SeasonSumAggregateInputType
+    _min?: SeasonMinAggregateInputType
+    _max?: SeasonMaxAggregateInputType
+  }
+
+  export type SeasonGroupByOutputType = {
+    id: number
+    slug: string
+    name: string
+    description: string | null
+    imageUrl: string | null
+    startAt: Date
+    endAt: Date
+    createdAt: Date
+    sanityId: string | null
+    _count: SeasonCountAggregateOutputType | null
+    _avg: SeasonAvgAggregateOutputType | null
+    _sum: SeasonSumAggregateOutputType | null
+    _min: SeasonMinAggregateOutputType | null
+    _max: SeasonMaxAggregateOutputType | null
+  }
+
+  type GetSeasonGroupByPayload<T extends SeasonGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SeasonGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SeasonGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SeasonGroupByOutputType[P]>
+            : GetScalarType<T[P], SeasonGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SeasonSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    slug?: boolean
+    name?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    startAt?: boolean
+    endAt?: boolean
+    createdAt?: boolean
+    sanityId?: boolean
+    challenges?: boolean | Season$challengesArgs<ExtArgs>
+    _count?: boolean | SeasonCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["season"]>
+
+  export type SeasonSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    slug?: boolean
+    name?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    startAt?: boolean
+    endAt?: boolean
+    createdAt?: boolean
+    sanityId?: boolean
+  }, ExtArgs["result"]["season"]>
+
+  export type SeasonSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    slug?: boolean
+    name?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    startAt?: boolean
+    endAt?: boolean
+    createdAt?: boolean
+    sanityId?: boolean
+  }, ExtArgs["result"]["season"]>
+
+  export type SeasonSelectScalar = {
+    id?: boolean
+    slug?: boolean
+    name?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    startAt?: boolean
+    endAt?: boolean
+    createdAt?: boolean
+    sanityId?: boolean
+  }
+
+  export type SeasonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "name" | "description" | "imageUrl" | "startAt" | "endAt" | "createdAt" | "sanityId", ExtArgs["result"]["season"]>
+  export type SeasonInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    challenges?: boolean | Season$challengesArgs<ExtArgs>
+    _count?: boolean | SeasonCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SeasonIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type SeasonIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $SeasonPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Season"
+    objects: {
+      challenges: Prisma.$ChallengePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      slug: string
+      name: string
+      description: string | null
+      imageUrl: string | null
+      startAt: Date
+      endAt: Date
+      createdAt: Date
+      sanityId: string | null
+    }, ExtArgs["result"]["season"]>
+    composites: {}
+  }
+
+  type SeasonGetPayload<S extends boolean | null | undefined | SeasonDefaultArgs> = $Result.GetResult<Prisma.$SeasonPayload, S>
+
+  type SeasonCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SeasonFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SeasonCountAggregateInputType | true
+    }
+
+  export interface SeasonDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Season'], meta: { name: 'Season' } }
+    /**
+     * Find zero or one Season that matches the filter.
+     * @param {SeasonFindUniqueArgs} args - Arguments to find a Season
+     * @example
+     * // Get one Season
+     * const season = await prisma.season.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SeasonFindUniqueArgs>(args: SelectSubset<T, SeasonFindUniqueArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Season that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SeasonFindUniqueOrThrowArgs} args - Arguments to find a Season
+     * @example
+     * // Get one Season
+     * const season = await prisma.season.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SeasonFindUniqueOrThrowArgs>(args: SelectSubset<T, SeasonFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Season that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeasonFindFirstArgs} args - Arguments to find a Season
+     * @example
+     * // Get one Season
+     * const season = await prisma.season.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SeasonFindFirstArgs>(args?: SelectSubset<T, SeasonFindFirstArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Season that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeasonFindFirstOrThrowArgs} args - Arguments to find a Season
+     * @example
+     * // Get one Season
+     * const season = await prisma.season.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SeasonFindFirstOrThrowArgs>(args?: SelectSubset<T, SeasonFindFirstOrThrowArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Seasons that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeasonFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Seasons
+     * const seasons = await prisma.season.findMany()
+     * 
+     * // Get first 10 Seasons
+     * const seasons = await prisma.season.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const seasonWithIdOnly = await prisma.season.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SeasonFindManyArgs>(args?: SelectSubset<T, SeasonFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Season.
+     * @param {SeasonCreateArgs} args - Arguments to create a Season.
+     * @example
+     * // Create one Season
+     * const Season = await prisma.season.create({
+     *   data: {
+     *     // ... data to create a Season
+     *   }
+     * })
+     * 
+     */
+    create<T extends SeasonCreateArgs>(args: SelectSubset<T, SeasonCreateArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Seasons.
+     * @param {SeasonCreateManyArgs} args - Arguments to create many Seasons.
+     * @example
+     * // Create many Seasons
+     * const season = await prisma.season.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SeasonCreateManyArgs>(args?: SelectSubset<T, SeasonCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Seasons and returns the data saved in the database.
+     * @param {SeasonCreateManyAndReturnArgs} args - Arguments to create many Seasons.
+     * @example
+     * // Create many Seasons
+     * const season = await prisma.season.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Seasons and only return the `id`
+     * const seasonWithIdOnly = await prisma.season.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SeasonCreateManyAndReturnArgs>(args?: SelectSubset<T, SeasonCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Season.
+     * @param {SeasonDeleteArgs} args - Arguments to delete one Season.
+     * @example
+     * // Delete one Season
+     * const Season = await prisma.season.delete({
+     *   where: {
+     *     // ... filter to delete one Season
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SeasonDeleteArgs>(args: SelectSubset<T, SeasonDeleteArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Season.
+     * @param {SeasonUpdateArgs} args - Arguments to update one Season.
+     * @example
+     * // Update one Season
+     * const season = await prisma.season.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SeasonUpdateArgs>(args: SelectSubset<T, SeasonUpdateArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Seasons.
+     * @param {SeasonDeleteManyArgs} args - Arguments to filter Seasons to delete.
+     * @example
+     * // Delete a few Seasons
+     * const { count } = await prisma.season.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SeasonDeleteManyArgs>(args?: SelectSubset<T, SeasonDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Seasons.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeasonUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Seasons
+     * const season = await prisma.season.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SeasonUpdateManyArgs>(args: SelectSubset<T, SeasonUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Seasons and returns the data updated in the database.
+     * @param {SeasonUpdateManyAndReturnArgs} args - Arguments to update many Seasons.
+     * @example
+     * // Update many Seasons
+     * const season = await prisma.season.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Seasons and only return the `id`
+     * const seasonWithIdOnly = await prisma.season.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SeasonUpdateManyAndReturnArgs>(args: SelectSubset<T, SeasonUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Season.
+     * @param {SeasonUpsertArgs} args - Arguments to update or create a Season.
+     * @example
+     * // Update or create a Season
+     * const season = await prisma.season.upsert({
+     *   create: {
+     *     // ... data to create a Season
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Season we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SeasonUpsertArgs>(args: SelectSubset<T, SeasonUpsertArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Seasons.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeasonCountArgs} args - Arguments to filter Seasons to count.
+     * @example
+     * // Count the number of Seasons
+     * const count = await prisma.season.count({
+     *   where: {
+     *     // ... the filter for the Seasons we want to count
+     *   }
+     * })
+    **/
+    count<T extends SeasonCountArgs>(
+      args?: Subset<T, SeasonCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SeasonCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Season.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeasonAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SeasonAggregateArgs>(args: Subset<T, SeasonAggregateArgs>): Prisma.PrismaPromise<GetSeasonAggregateType<T>>
+
+    /**
+     * Group by Season.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SeasonGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SeasonGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SeasonGroupByArgs['orderBy'] }
+        : { orderBy?: SeasonGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SeasonGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSeasonGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Season model
+   */
+  readonly fields: SeasonFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Season.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SeasonClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    challenges<T extends Season$challengesArgs<ExtArgs> = {}>(args?: Subset<T, Season$challengesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Season model
+   */
+  interface SeasonFieldRefs {
+    readonly id: FieldRef<"Season", 'Int'>
+    readonly slug: FieldRef<"Season", 'String'>
+    readonly name: FieldRef<"Season", 'String'>
+    readonly description: FieldRef<"Season", 'String'>
+    readonly imageUrl: FieldRef<"Season", 'String'>
+    readonly startAt: FieldRef<"Season", 'DateTime'>
+    readonly endAt: FieldRef<"Season", 'DateTime'>
+    readonly createdAt: FieldRef<"Season", 'DateTime'>
+    readonly sanityId: FieldRef<"Season", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Season findUnique
+   */
+  export type SeasonFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeasonInclude<ExtArgs> | null
+    /**
+     * Filter, which Season to fetch.
+     */
+    where: SeasonWhereUniqueInput
+  }
+
+  /**
+   * Season findUniqueOrThrow
+   */
+  export type SeasonFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeasonInclude<ExtArgs> | null
+    /**
+     * Filter, which Season to fetch.
+     */
+    where: SeasonWhereUniqueInput
+  }
+
+  /**
+   * Season findFirst
+   */
+  export type SeasonFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeasonInclude<ExtArgs> | null
+    /**
+     * Filter, which Season to fetch.
+     */
+    where?: SeasonWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Seasons to fetch.
+     */
+    orderBy?: SeasonOrderByWithRelationInput | SeasonOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Seasons.
+     */
+    cursor?: SeasonWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Seasons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Seasons.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Seasons.
+     */
+    distinct?: SeasonScalarFieldEnum | SeasonScalarFieldEnum[]
+  }
+
+  /**
+   * Season findFirstOrThrow
+   */
+  export type SeasonFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeasonInclude<ExtArgs> | null
+    /**
+     * Filter, which Season to fetch.
+     */
+    where?: SeasonWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Seasons to fetch.
+     */
+    orderBy?: SeasonOrderByWithRelationInput | SeasonOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Seasons.
+     */
+    cursor?: SeasonWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Seasons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Seasons.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Seasons.
+     */
+    distinct?: SeasonScalarFieldEnum | SeasonScalarFieldEnum[]
+  }
+
+  /**
+   * Season findMany
+   */
+  export type SeasonFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeasonInclude<ExtArgs> | null
+    /**
+     * Filter, which Seasons to fetch.
+     */
+    where?: SeasonWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Seasons to fetch.
+     */
+    orderBy?: SeasonOrderByWithRelationInput | SeasonOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Seasons.
+     */
+    cursor?: SeasonWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Seasons from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Seasons.
+     */
+    skip?: number
+    distinct?: SeasonScalarFieldEnum | SeasonScalarFieldEnum[]
+  }
+
+  /**
+   * Season create
+   */
+  export type SeasonCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeasonInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Season.
+     */
+    data: XOR<SeasonCreateInput, SeasonUncheckedCreateInput>
+  }
+
+  /**
+   * Season createMany
+   */
+  export type SeasonCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Seasons.
+     */
+    data: SeasonCreateManyInput | SeasonCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Season createManyAndReturn
+   */
+  export type SeasonCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * The data used to create many Seasons.
+     */
+    data: SeasonCreateManyInput | SeasonCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Season update
+   */
+  export type SeasonUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeasonInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Season.
+     */
+    data: XOR<SeasonUpdateInput, SeasonUncheckedUpdateInput>
+    /**
+     * Choose, which Season to update.
+     */
+    where: SeasonWhereUniqueInput
+  }
+
+  /**
+   * Season updateMany
+   */
+  export type SeasonUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Seasons.
+     */
+    data: XOR<SeasonUpdateManyMutationInput, SeasonUncheckedUpdateManyInput>
+    /**
+     * Filter which Seasons to update
+     */
+    where?: SeasonWhereInput
+    /**
+     * Limit how many Seasons to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Season updateManyAndReturn
+   */
+  export type SeasonUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * The data used to update Seasons.
+     */
+    data: XOR<SeasonUpdateManyMutationInput, SeasonUncheckedUpdateManyInput>
+    /**
+     * Filter which Seasons to update
+     */
+    where?: SeasonWhereInput
+    /**
+     * Limit how many Seasons to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Season upsert
+   */
+  export type SeasonUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeasonInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Season to update in case it exists.
+     */
+    where: SeasonWhereUniqueInput
+    /**
+     * In case the Season found by the `where` argument doesn't exist, create a new Season with this data.
+     */
+    create: XOR<SeasonCreateInput, SeasonUncheckedCreateInput>
+    /**
+     * In case the Season was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SeasonUpdateInput, SeasonUncheckedUpdateInput>
+  }
+
+  /**
+   * Season delete
+   */
+  export type SeasonDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeasonInclude<ExtArgs> | null
+    /**
+     * Filter which Season to delete.
+     */
+    where: SeasonWhereUniqueInput
+  }
+
+  /**
+   * Season deleteMany
+   */
+  export type SeasonDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Seasons to delete
+     */
+    where?: SeasonWhereInput
+    /**
+     * Limit how many Seasons to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Season.challenges
+   */
+  export type Season$challengesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeInclude<ExtArgs> | null
+    where?: ChallengeWhereInput
+    orderBy?: ChallengeOrderByWithRelationInput | ChallengeOrderByWithRelationInput[]
+    cursor?: ChallengeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChallengeScalarFieldEnum | ChallengeScalarFieldEnum[]
+  }
+
+  /**
+   * Season without action
+   */
+  export type SeasonDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeasonInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Challenge
+   */
+
+  export type AggregateChallenge = {
+    _count: ChallengeCountAggregateOutputType | null
+    _avg: ChallengeAvgAggregateOutputType | null
+    _sum: ChallengeSumAggregateOutputType | null
+    _min: ChallengeMinAggregateOutputType | null
+    _max: ChallengeMaxAggregateOutputType | null
+  }
+
+  export type ChallengeAvgAggregateOutputType = {
+    id: number | null
+    xpReward: number | null
+    seasonId: number | null
+  }
+
+  export type ChallengeSumAggregateOutputType = {
+    id: number | null
+    xpReward: number | null
+    seasonId: number | null
+  }
+
+  export type ChallengeMinAggregateOutputType = {
+    id: number | null
+    slug: string | null
+    title: string | null
+    description: string | null
+    type: string | null
+    xpReward: number | null
+    seasonId: number | null
+    startsAt: Date | null
+    endsAt: Date | null
+    createdAt: Date | null
+    sanityId: string | null
+  }
+
+  export type ChallengeMaxAggregateOutputType = {
+    id: number | null
+    slug: string | null
+    title: string | null
+    description: string | null
+    type: string | null
+    xpReward: number | null
+    seasonId: number | null
+    startsAt: Date | null
+    endsAt: Date | null
+    createdAt: Date | null
+    sanityId: string | null
+  }
+
+  export type ChallengeCountAggregateOutputType = {
+    id: number
+    slug: number
+    title: number
+    description: number
+    type: number
+    config: number
+    xpReward: number
+    seasonId: number
+    startsAt: number
+    endsAt: number
+    createdAt: number
+    sanityId: number
+    _all: number
+  }
+
+
+  export type ChallengeAvgAggregateInputType = {
+    id?: true
+    xpReward?: true
+    seasonId?: true
+  }
+
+  export type ChallengeSumAggregateInputType = {
+    id?: true
+    xpReward?: true
+    seasonId?: true
+  }
+
+  export type ChallengeMinAggregateInputType = {
+    id?: true
+    slug?: true
+    title?: true
+    description?: true
+    type?: true
+    xpReward?: true
+    seasonId?: true
+    startsAt?: true
+    endsAt?: true
+    createdAt?: true
+    sanityId?: true
+  }
+
+  export type ChallengeMaxAggregateInputType = {
+    id?: true
+    slug?: true
+    title?: true
+    description?: true
+    type?: true
+    xpReward?: true
+    seasonId?: true
+    startsAt?: true
+    endsAt?: true
+    createdAt?: true
+    sanityId?: true
+  }
+
+  export type ChallengeCountAggregateInputType = {
+    id?: true
+    slug?: true
+    title?: true
+    description?: true
+    type?: true
+    config?: true
+    xpReward?: true
+    seasonId?: true
+    startsAt?: true
+    endsAt?: true
+    createdAt?: true
+    sanityId?: true
+    _all?: true
+  }
+
+  export type ChallengeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Challenge to aggregate.
+     */
+    where?: ChallengeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Challenges to fetch.
+     */
+    orderBy?: ChallengeOrderByWithRelationInput | ChallengeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ChallengeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Challenges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Challenges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Challenges
+    **/
+    _count?: true | ChallengeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ChallengeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ChallengeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ChallengeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ChallengeMaxAggregateInputType
+  }
+
+  export type GetChallengeAggregateType<T extends ChallengeAggregateArgs> = {
+        [P in keyof T & keyof AggregateChallenge]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateChallenge[P]>
+      : GetScalarType<T[P], AggregateChallenge[P]>
+  }
+
+
+
+
+  export type ChallengeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChallengeWhereInput
+    orderBy?: ChallengeOrderByWithAggregationInput | ChallengeOrderByWithAggregationInput[]
+    by: ChallengeScalarFieldEnum[] | ChallengeScalarFieldEnum
+    having?: ChallengeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ChallengeCountAggregateInputType | true
+    _avg?: ChallengeAvgAggregateInputType
+    _sum?: ChallengeSumAggregateInputType
+    _min?: ChallengeMinAggregateInputType
+    _max?: ChallengeMaxAggregateInputType
+  }
+
+  export type ChallengeGroupByOutputType = {
+    id: number
+    slug: string
+    title: string
+    description: string | null
+    type: string
+    config: JsonValue
+    xpReward: number
+    seasonId: number | null
+    startsAt: Date | null
+    endsAt: Date | null
+    createdAt: Date
+    sanityId: string | null
+    _count: ChallengeCountAggregateOutputType | null
+    _avg: ChallengeAvgAggregateOutputType | null
+    _sum: ChallengeSumAggregateOutputType | null
+    _min: ChallengeMinAggregateOutputType | null
+    _max: ChallengeMaxAggregateOutputType | null
+  }
+
+  type GetChallengeGroupByPayload<T extends ChallengeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ChallengeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ChallengeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ChallengeGroupByOutputType[P]>
+            : GetScalarType<T[P], ChallengeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ChallengeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    slug?: boolean
+    title?: boolean
+    description?: boolean
+    type?: boolean
+    config?: boolean
+    xpReward?: boolean
+    seasonId?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    createdAt?: boolean
+    sanityId?: boolean
+    season?: boolean | Challenge$seasonArgs<ExtArgs>
+    completions?: boolean | Challenge$completionsArgs<ExtArgs>
+    _count?: boolean | ChallengeCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["challenge"]>
+
+  export type ChallengeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    slug?: boolean
+    title?: boolean
+    description?: boolean
+    type?: boolean
+    config?: boolean
+    xpReward?: boolean
+    seasonId?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    createdAt?: boolean
+    sanityId?: boolean
+    season?: boolean | Challenge$seasonArgs<ExtArgs>
+  }, ExtArgs["result"]["challenge"]>
+
+  export type ChallengeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    slug?: boolean
+    title?: boolean
+    description?: boolean
+    type?: boolean
+    config?: boolean
+    xpReward?: boolean
+    seasonId?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    createdAt?: boolean
+    sanityId?: boolean
+    season?: boolean | Challenge$seasonArgs<ExtArgs>
+  }, ExtArgs["result"]["challenge"]>
+
+  export type ChallengeSelectScalar = {
+    id?: boolean
+    slug?: boolean
+    title?: boolean
+    description?: boolean
+    type?: boolean
+    config?: boolean
+    xpReward?: boolean
+    seasonId?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    createdAt?: boolean
+    sanityId?: boolean
+  }
+
+  export type ChallengeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "description" | "type" | "config" | "xpReward" | "seasonId" | "startsAt" | "endsAt" | "createdAt" | "sanityId", ExtArgs["result"]["challenge"]>
+  export type ChallengeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    season?: boolean | Challenge$seasonArgs<ExtArgs>
+    completions?: boolean | Challenge$completionsArgs<ExtArgs>
+    _count?: boolean | ChallengeCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ChallengeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    season?: boolean | Challenge$seasonArgs<ExtArgs>
+  }
+  export type ChallengeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    season?: boolean | Challenge$seasonArgs<ExtArgs>
+  }
+
+  export type $ChallengePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Challenge"
+    objects: {
+      season: Prisma.$SeasonPayload<ExtArgs> | null
+      completions: Prisma.$UserChallengeCompletionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      slug: string
+      title: string
+      description: string | null
+      type: string
+      config: Prisma.JsonValue
+      xpReward: number
+      seasonId: number | null
+      startsAt: Date | null
+      endsAt: Date | null
+      createdAt: Date
+      sanityId: string | null
+    }, ExtArgs["result"]["challenge"]>
+    composites: {}
+  }
+
+  type ChallengeGetPayload<S extends boolean | null | undefined | ChallengeDefaultArgs> = $Result.GetResult<Prisma.$ChallengePayload, S>
+
+  type ChallengeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ChallengeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ChallengeCountAggregateInputType | true
+    }
+
+  export interface ChallengeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Challenge'], meta: { name: 'Challenge' } }
+    /**
+     * Find zero or one Challenge that matches the filter.
+     * @param {ChallengeFindUniqueArgs} args - Arguments to find a Challenge
+     * @example
+     * // Get one Challenge
+     * const challenge = await prisma.challenge.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ChallengeFindUniqueArgs>(args: SelectSubset<T, ChallengeFindUniqueArgs<ExtArgs>>): Prisma__ChallengeClient<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Challenge that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ChallengeFindUniqueOrThrowArgs} args - Arguments to find a Challenge
+     * @example
+     * // Get one Challenge
+     * const challenge = await prisma.challenge.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ChallengeFindUniqueOrThrowArgs>(args: SelectSubset<T, ChallengeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ChallengeClient<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Challenge that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChallengeFindFirstArgs} args - Arguments to find a Challenge
+     * @example
+     * // Get one Challenge
+     * const challenge = await prisma.challenge.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ChallengeFindFirstArgs>(args?: SelectSubset<T, ChallengeFindFirstArgs<ExtArgs>>): Prisma__ChallengeClient<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Challenge that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChallengeFindFirstOrThrowArgs} args - Arguments to find a Challenge
+     * @example
+     * // Get one Challenge
+     * const challenge = await prisma.challenge.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ChallengeFindFirstOrThrowArgs>(args?: SelectSubset<T, ChallengeFindFirstOrThrowArgs<ExtArgs>>): Prisma__ChallengeClient<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Challenges that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChallengeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Challenges
+     * const challenges = await prisma.challenge.findMany()
+     * 
+     * // Get first 10 Challenges
+     * const challenges = await prisma.challenge.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const challengeWithIdOnly = await prisma.challenge.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ChallengeFindManyArgs>(args?: SelectSubset<T, ChallengeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Challenge.
+     * @param {ChallengeCreateArgs} args - Arguments to create a Challenge.
+     * @example
+     * // Create one Challenge
+     * const Challenge = await prisma.challenge.create({
+     *   data: {
+     *     // ... data to create a Challenge
+     *   }
+     * })
+     * 
+     */
+    create<T extends ChallengeCreateArgs>(args: SelectSubset<T, ChallengeCreateArgs<ExtArgs>>): Prisma__ChallengeClient<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Challenges.
+     * @param {ChallengeCreateManyArgs} args - Arguments to create many Challenges.
+     * @example
+     * // Create many Challenges
+     * const challenge = await prisma.challenge.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ChallengeCreateManyArgs>(args?: SelectSubset<T, ChallengeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Challenges and returns the data saved in the database.
+     * @param {ChallengeCreateManyAndReturnArgs} args - Arguments to create many Challenges.
+     * @example
+     * // Create many Challenges
+     * const challenge = await prisma.challenge.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Challenges and only return the `id`
+     * const challengeWithIdOnly = await prisma.challenge.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ChallengeCreateManyAndReturnArgs>(args?: SelectSubset<T, ChallengeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Challenge.
+     * @param {ChallengeDeleteArgs} args - Arguments to delete one Challenge.
+     * @example
+     * // Delete one Challenge
+     * const Challenge = await prisma.challenge.delete({
+     *   where: {
+     *     // ... filter to delete one Challenge
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ChallengeDeleteArgs>(args: SelectSubset<T, ChallengeDeleteArgs<ExtArgs>>): Prisma__ChallengeClient<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Challenge.
+     * @param {ChallengeUpdateArgs} args - Arguments to update one Challenge.
+     * @example
+     * // Update one Challenge
+     * const challenge = await prisma.challenge.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ChallengeUpdateArgs>(args: SelectSubset<T, ChallengeUpdateArgs<ExtArgs>>): Prisma__ChallengeClient<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Challenges.
+     * @param {ChallengeDeleteManyArgs} args - Arguments to filter Challenges to delete.
+     * @example
+     * // Delete a few Challenges
+     * const { count } = await prisma.challenge.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ChallengeDeleteManyArgs>(args?: SelectSubset<T, ChallengeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Challenges.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChallengeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Challenges
+     * const challenge = await prisma.challenge.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ChallengeUpdateManyArgs>(args: SelectSubset<T, ChallengeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Challenges and returns the data updated in the database.
+     * @param {ChallengeUpdateManyAndReturnArgs} args - Arguments to update many Challenges.
+     * @example
+     * // Update many Challenges
+     * const challenge = await prisma.challenge.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Challenges and only return the `id`
+     * const challengeWithIdOnly = await prisma.challenge.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ChallengeUpdateManyAndReturnArgs>(args: SelectSubset<T, ChallengeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Challenge.
+     * @param {ChallengeUpsertArgs} args - Arguments to update or create a Challenge.
+     * @example
+     * // Update or create a Challenge
+     * const challenge = await prisma.challenge.upsert({
+     *   create: {
+     *     // ... data to create a Challenge
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Challenge we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ChallengeUpsertArgs>(args: SelectSubset<T, ChallengeUpsertArgs<ExtArgs>>): Prisma__ChallengeClient<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Challenges.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChallengeCountArgs} args - Arguments to filter Challenges to count.
+     * @example
+     * // Count the number of Challenges
+     * const count = await prisma.challenge.count({
+     *   where: {
+     *     // ... the filter for the Challenges we want to count
+     *   }
+     * })
+    **/
+    count<T extends ChallengeCountArgs>(
+      args?: Subset<T, ChallengeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ChallengeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Challenge.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChallengeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ChallengeAggregateArgs>(args: Subset<T, ChallengeAggregateArgs>): Prisma.PrismaPromise<GetChallengeAggregateType<T>>
+
+    /**
+     * Group by Challenge.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChallengeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ChallengeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ChallengeGroupByArgs['orderBy'] }
+        : { orderBy?: ChallengeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ChallengeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChallengeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Challenge model
+   */
+  readonly fields: ChallengeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Challenge.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ChallengeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    season<T extends Challenge$seasonArgs<ExtArgs> = {}>(args?: Subset<T, Challenge$seasonArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    completions<T extends Challenge$completionsArgs<ExtArgs> = {}>(args?: Subset<T, Challenge$completionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Challenge model
+   */
+  interface ChallengeFieldRefs {
+    readonly id: FieldRef<"Challenge", 'Int'>
+    readonly slug: FieldRef<"Challenge", 'String'>
+    readonly title: FieldRef<"Challenge", 'String'>
+    readonly description: FieldRef<"Challenge", 'String'>
+    readonly type: FieldRef<"Challenge", 'String'>
+    readonly config: FieldRef<"Challenge", 'Json'>
+    readonly xpReward: FieldRef<"Challenge", 'Int'>
+    readonly seasonId: FieldRef<"Challenge", 'Int'>
+    readonly startsAt: FieldRef<"Challenge", 'DateTime'>
+    readonly endsAt: FieldRef<"Challenge", 'DateTime'>
+    readonly createdAt: FieldRef<"Challenge", 'DateTime'>
+    readonly sanityId: FieldRef<"Challenge", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Challenge findUnique
+   */
+  export type ChallengeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeInclude<ExtArgs> | null
+    /**
+     * Filter, which Challenge to fetch.
+     */
+    where: ChallengeWhereUniqueInput
+  }
+
+  /**
+   * Challenge findUniqueOrThrow
+   */
+  export type ChallengeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeInclude<ExtArgs> | null
+    /**
+     * Filter, which Challenge to fetch.
+     */
+    where: ChallengeWhereUniqueInput
+  }
+
+  /**
+   * Challenge findFirst
+   */
+  export type ChallengeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeInclude<ExtArgs> | null
+    /**
+     * Filter, which Challenge to fetch.
+     */
+    where?: ChallengeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Challenges to fetch.
+     */
+    orderBy?: ChallengeOrderByWithRelationInput | ChallengeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Challenges.
+     */
+    cursor?: ChallengeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Challenges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Challenges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Challenges.
+     */
+    distinct?: ChallengeScalarFieldEnum | ChallengeScalarFieldEnum[]
+  }
+
+  /**
+   * Challenge findFirstOrThrow
+   */
+  export type ChallengeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeInclude<ExtArgs> | null
+    /**
+     * Filter, which Challenge to fetch.
+     */
+    where?: ChallengeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Challenges to fetch.
+     */
+    orderBy?: ChallengeOrderByWithRelationInput | ChallengeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Challenges.
+     */
+    cursor?: ChallengeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Challenges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Challenges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Challenges.
+     */
+    distinct?: ChallengeScalarFieldEnum | ChallengeScalarFieldEnum[]
+  }
+
+  /**
+   * Challenge findMany
+   */
+  export type ChallengeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeInclude<ExtArgs> | null
+    /**
+     * Filter, which Challenges to fetch.
+     */
+    where?: ChallengeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Challenges to fetch.
+     */
+    orderBy?: ChallengeOrderByWithRelationInput | ChallengeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Challenges.
+     */
+    cursor?: ChallengeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Challenges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Challenges.
+     */
+    skip?: number
+    distinct?: ChallengeScalarFieldEnum | ChallengeScalarFieldEnum[]
+  }
+
+  /**
+   * Challenge create
+   */
+  export type ChallengeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Challenge.
+     */
+    data: XOR<ChallengeCreateInput, ChallengeUncheckedCreateInput>
+  }
+
+  /**
+   * Challenge createMany
+   */
+  export type ChallengeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Challenges.
+     */
+    data: ChallengeCreateManyInput | ChallengeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Challenge createManyAndReturn
+   */
+  export type ChallengeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * The data used to create many Challenges.
+     */
+    data: ChallengeCreateManyInput | ChallengeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Challenge update
+   */
+  export type ChallengeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Challenge.
+     */
+    data: XOR<ChallengeUpdateInput, ChallengeUncheckedUpdateInput>
+    /**
+     * Choose, which Challenge to update.
+     */
+    where: ChallengeWhereUniqueInput
+  }
+
+  /**
+   * Challenge updateMany
+   */
+  export type ChallengeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Challenges.
+     */
+    data: XOR<ChallengeUpdateManyMutationInput, ChallengeUncheckedUpdateManyInput>
+    /**
+     * Filter which Challenges to update
+     */
+    where?: ChallengeWhereInput
+    /**
+     * Limit how many Challenges to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Challenge updateManyAndReturn
+   */
+  export type ChallengeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * The data used to update Challenges.
+     */
+    data: XOR<ChallengeUpdateManyMutationInput, ChallengeUncheckedUpdateManyInput>
+    /**
+     * Filter which Challenges to update
+     */
+    where?: ChallengeWhereInput
+    /**
+     * Limit how many Challenges to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Challenge upsert
+   */
+  export type ChallengeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Challenge to update in case it exists.
+     */
+    where: ChallengeWhereUniqueInput
+    /**
+     * In case the Challenge found by the `where` argument doesn't exist, create a new Challenge with this data.
+     */
+    create: XOR<ChallengeCreateInput, ChallengeUncheckedCreateInput>
+    /**
+     * In case the Challenge was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ChallengeUpdateInput, ChallengeUncheckedUpdateInput>
+  }
+
+  /**
+   * Challenge delete
+   */
+  export type ChallengeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeInclude<ExtArgs> | null
+    /**
+     * Filter which Challenge to delete.
+     */
+    where: ChallengeWhereUniqueInput
+  }
+
+  /**
+   * Challenge deleteMany
+   */
+  export type ChallengeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Challenges to delete
+     */
+    where?: ChallengeWhereInput
+    /**
+     * Limit how many Challenges to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Challenge.season
+   */
+  export type Challenge$seasonArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Season
+     */
+    select?: SeasonSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Season
+     */
+    omit?: SeasonOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeasonInclude<ExtArgs> | null
+    where?: SeasonWhereInput
+  }
+
+  /**
+   * Challenge.completions
+   */
+  export type Challenge$completionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionInclude<ExtArgs> | null
+    where?: UserChallengeCompletionWhereInput
+    orderBy?: UserChallengeCompletionOrderByWithRelationInput | UserChallengeCompletionOrderByWithRelationInput[]
+    cursor?: UserChallengeCompletionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserChallengeCompletionScalarFieldEnum | UserChallengeCompletionScalarFieldEnum[]
+  }
+
+  /**
+   * Challenge without action
+   */
+  export type ChallengeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Challenge
+     */
+    select?: ChallengeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Challenge
+     */
+    omit?: ChallengeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChallengeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserChallengeCompletion
+   */
+
+  export type AggregateUserChallengeCompletion = {
+    _count: UserChallengeCompletionCountAggregateOutputType | null
+    _avg: UserChallengeCompletionAvgAggregateOutputType | null
+    _sum: UserChallengeCompletionSumAggregateOutputType | null
+    _min: UserChallengeCompletionMinAggregateOutputType | null
+    _max: UserChallengeCompletionMaxAggregateOutputType | null
+  }
+
+  export type UserChallengeCompletionAvgAggregateOutputType = {
+    challengeId: number | null
+  }
+
+  export type UserChallengeCompletionSumAggregateOutputType = {
+    challengeId: number | null
+  }
+
+  export type UserChallengeCompletionMinAggregateOutputType = {
+    wallet: string | null
+    challengeId: number | null
+    completionDay: string | null
+    completedAt: Date | null
+    submissionLink: string | null
+  }
+
+  export type UserChallengeCompletionMaxAggregateOutputType = {
+    wallet: string | null
+    challengeId: number | null
+    completionDay: string | null
+    completedAt: Date | null
+    submissionLink: string | null
+  }
+
+  export type UserChallengeCompletionCountAggregateOutputType = {
+    wallet: number
+    challengeId: number
+    completionDay: number
+    completedAt: number
+    metadata: number
+    submissionLink: number
+    _all: number
+  }
+
+
+  export type UserChallengeCompletionAvgAggregateInputType = {
+    challengeId?: true
+  }
+
+  export type UserChallengeCompletionSumAggregateInputType = {
+    challengeId?: true
+  }
+
+  export type UserChallengeCompletionMinAggregateInputType = {
+    wallet?: true
+    challengeId?: true
+    completionDay?: true
+    completedAt?: true
+    submissionLink?: true
+  }
+
+  export type UserChallengeCompletionMaxAggregateInputType = {
+    wallet?: true
+    challengeId?: true
+    completionDay?: true
+    completedAt?: true
+    submissionLink?: true
+  }
+
+  export type UserChallengeCompletionCountAggregateInputType = {
+    wallet?: true
+    challengeId?: true
+    completionDay?: true
+    completedAt?: true
+    metadata?: true
+    submissionLink?: true
+    _all?: true
+  }
+
+  export type UserChallengeCompletionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserChallengeCompletion to aggregate.
+     */
+    where?: UserChallengeCompletionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserChallengeCompletions to fetch.
+     */
+    orderBy?: UserChallengeCompletionOrderByWithRelationInput | UserChallengeCompletionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserChallengeCompletionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserChallengeCompletions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserChallengeCompletions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserChallengeCompletions
+    **/
+    _count?: true | UserChallengeCompletionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserChallengeCompletionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserChallengeCompletionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserChallengeCompletionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserChallengeCompletionMaxAggregateInputType
+  }
+
+  export type GetUserChallengeCompletionAggregateType<T extends UserChallengeCompletionAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserChallengeCompletion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserChallengeCompletion[P]>
+      : GetScalarType<T[P], AggregateUserChallengeCompletion[P]>
+  }
+
+
+
+
+  export type UserChallengeCompletionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserChallengeCompletionWhereInput
+    orderBy?: UserChallengeCompletionOrderByWithAggregationInput | UserChallengeCompletionOrderByWithAggregationInput[]
+    by: UserChallengeCompletionScalarFieldEnum[] | UserChallengeCompletionScalarFieldEnum
+    having?: UserChallengeCompletionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserChallengeCompletionCountAggregateInputType | true
+    _avg?: UserChallengeCompletionAvgAggregateInputType
+    _sum?: UserChallengeCompletionSumAggregateInputType
+    _min?: UserChallengeCompletionMinAggregateInputType
+    _max?: UserChallengeCompletionMaxAggregateInputType
+  }
+
+  export type UserChallengeCompletionGroupByOutputType = {
+    wallet: string
+    challengeId: number
+    completionDay: string
+    completedAt: Date
+    metadata: JsonValue | null
+    submissionLink: string | null
+    _count: UserChallengeCompletionCountAggregateOutputType | null
+    _avg: UserChallengeCompletionAvgAggregateOutputType | null
+    _sum: UserChallengeCompletionSumAggregateOutputType | null
+    _min: UserChallengeCompletionMinAggregateOutputType | null
+    _max: UserChallengeCompletionMaxAggregateOutputType | null
+  }
+
+  type GetUserChallengeCompletionGroupByPayload<T extends UserChallengeCompletionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserChallengeCompletionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserChallengeCompletionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserChallengeCompletionGroupByOutputType[P]>
+            : GetScalarType<T[P], UserChallengeCompletionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserChallengeCompletionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    wallet?: boolean
+    challengeId?: boolean
+    completionDay?: boolean
+    completedAt?: boolean
+    metadata?: boolean
+    submissionLink?: boolean
+    challenge?: boolean | ChallengeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userChallengeCompletion"]>
+
+  export type UserChallengeCompletionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    wallet?: boolean
+    challengeId?: boolean
+    completionDay?: boolean
+    completedAt?: boolean
+    metadata?: boolean
+    submissionLink?: boolean
+    challenge?: boolean | ChallengeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userChallengeCompletion"]>
+
+  export type UserChallengeCompletionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    wallet?: boolean
+    challengeId?: boolean
+    completionDay?: boolean
+    completedAt?: boolean
+    metadata?: boolean
+    submissionLink?: boolean
+    challenge?: boolean | ChallengeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userChallengeCompletion"]>
+
+  export type UserChallengeCompletionSelectScalar = {
+    wallet?: boolean
+    challengeId?: boolean
+    completionDay?: boolean
+    completedAt?: boolean
+    metadata?: boolean
+    submissionLink?: boolean
+  }
+
+  export type UserChallengeCompletionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"wallet" | "challengeId" | "completionDay" | "completedAt" | "metadata" | "submissionLink", ExtArgs["result"]["userChallengeCompletion"]>
+  export type UserChallengeCompletionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    challenge?: boolean | ChallengeDefaultArgs<ExtArgs>
+  }
+  export type UserChallengeCompletionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    challenge?: boolean | ChallengeDefaultArgs<ExtArgs>
+  }
+  export type UserChallengeCompletionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    challenge?: boolean | ChallengeDefaultArgs<ExtArgs>
+  }
+
+  export type $UserChallengeCompletionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserChallengeCompletion"
+    objects: {
+      challenge: Prisma.$ChallengePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      wallet: string
+      challengeId: number
+      completionDay: string
+      completedAt: Date
+      metadata: Prisma.JsonValue | null
+      submissionLink: string | null
+    }, ExtArgs["result"]["userChallengeCompletion"]>
+    composites: {}
+  }
+
+  type UserChallengeCompletionGetPayload<S extends boolean | null | undefined | UserChallengeCompletionDefaultArgs> = $Result.GetResult<Prisma.$UserChallengeCompletionPayload, S>
+
+  type UserChallengeCompletionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserChallengeCompletionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserChallengeCompletionCountAggregateInputType | true
+    }
+
+  export interface UserChallengeCompletionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserChallengeCompletion'], meta: { name: 'UserChallengeCompletion' } }
+    /**
+     * Find zero or one UserChallengeCompletion that matches the filter.
+     * @param {UserChallengeCompletionFindUniqueArgs} args - Arguments to find a UserChallengeCompletion
+     * @example
+     * // Get one UserChallengeCompletion
+     * const userChallengeCompletion = await prisma.userChallengeCompletion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserChallengeCompletionFindUniqueArgs>(args: SelectSubset<T, UserChallengeCompletionFindUniqueArgs<ExtArgs>>): Prisma__UserChallengeCompletionClient<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserChallengeCompletion that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserChallengeCompletionFindUniqueOrThrowArgs} args - Arguments to find a UserChallengeCompletion
+     * @example
+     * // Get one UserChallengeCompletion
+     * const userChallengeCompletion = await prisma.userChallengeCompletion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserChallengeCompletionFindUniqueOrThrowArgs>(args: SelectSubset<T, UserChallengeCompletionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserChallengeCompletionClient<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserChallengeCompletion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserChallengeCompletionFindFirstArgs} args - Arguments to find a UserChallengeCompletion
+     * @example
+     * // Get one UserChallengeCompletion
+     * const userChallengeCompletion = await prisma.userChallengeCompletion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserChallengeCompletionFindFirstArgs>(args?: SelectSubset<T, UserChallengeCompletionFindFirstArgs<ExtArgs>>): Prisma__UserChallengeCompletionClient<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserChallengeCompletion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserChallengeCompletionFindFirstOrThrowArgs} args - Arguments to find a UserChallengeCompletion
+     * @example
+     * // Get one UserChallengeCompletion
+     * const userChallengeCompletion = await prisma.userChallengeCompletion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserChallengeCompletionFindFirstOrThrowArgs>(args?: SelectSubset<T, UserChallengeCompletionFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserChallengeCompletionClient<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserChallengeCompletions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserChallengeCompletionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserChallengeCompletions
+     * const userChallengeCompletions = await prisma.userChallengeCompletion.findMany()
+     * 
+     * // Get first 10 UserChallengeCompletions
+     * const userChallengeCompletions = await prisma.userChallengeCompletion.findMany({ take: 10 })
+     * 
+     * // Only select the `wallet`
+     * const userChallengeCompletionWithWalletOnly = await prisma.userChallengeCompletion.findMany({ select: { wallet: true } })
+     * 
+     */
+    findMany<T extends UserChallengeCompletionFindManyArgs>(args?: SelectSubset<T, UserChallengeCompletionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserChallengeCompletion.
+     * @param {UserChallengeCompletionCreateArgs} args - Arguments to create a UserChallengeCompletion.
+     * @example
+     * // Create one UserChallengeCompletion
+     * const UserChallengeCompletion = await prisma.userChallengeCompletion.create({
+     *   data: {
+     *     // ... data to create a UserChallengeCompletion
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserChallengeCompletionCreateArgs>(args: SelectSubset<T, UserChallengeCompletionCreateArgs<ExtArgs>>): Prisma__UserChallengeCompletionClient<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserChallengeCompletions.
+     * @param {UserChallengeCompletionCreateManyArgs} args - Arguments to create many UserChallengeCompletions.
+     * @example
+     * // Create many UserChallengeCompletions
+     * const userChallengeCompletion = await prisma.userChallengeCompletion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserChallengeCompletionCreateManyArgs>(args?: SelectSubset<T, UserChallengeCompletionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserChallengeCompletions and returns the data saved in the database.
+     * @param {UserChallengeCompletionCreateManyAndReturnArgs} args - Arguments to create many UserChallengeCompletions.
+     * @example
+     * // Create many UserChallengeCompletions
+     * const userChallengeCompletion = await prisma.userChallengeCompletion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserChallengeCompletions and only return the `wallet`
+     * const userChallengeCompletionWithWalletOnly = await prisma.userChallengeCompletion.createManyAndReturn({
+     *   select: { wallet: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserChallengeCompletionCreateManyAndReturnArgs>(args?: SelectSubset<T, UserChallengeCompletionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserChallengeCompletion.
+     * @param {UserChallengeCompletionDeleteArgs} args - Arguments to delete one UserChallengeCompletion.
+     * @example
+     * // Delete one UserChallengeCompletion
+     * const UserChallengeCompletion = await prisma.userChallengeCompletion.delete({
+     *   where: {
+     *     // ... filter to delete one UserChallengeCompletion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserChallengeCompletionDeleteArgs>(args: SelectSubset<T, UserChallengeCompletionDeleteArgs<ExtArgs>>): Prisma__UserChallengeCompletionClient<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserChallengeCompletion.
+     * @param {UserChallengeCompletionUpdateArgs} args - Arguments to update one UserChallengeCompletion.
+     * @example
+     * // Update one UserChallengeCompletion
+     * const userChallengeCompletion = await prisma.userChallengeCompletion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserChallengeCompletionUpdateArgs>(args: SelectSubset<T, UserChallengeCompletionUpdateArgs<ExtArgs>>): Prisma__UserChallengeCompletionClient<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserChallengeCompletions.
+     * @param {UserChallengeCompletionDeleteManyArgs} args - Arguments to filter UserChallengeCompletions to delete.
+     * @example
+     * // Delete a few UserChallengeCompletions
+     * const { count } = await prisma.userChallengeCompletion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserChallengeCompletionDeleteManyArgs>(args?: SelectSubset<T, UserChallengeCompletionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserChallengeCompletions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserChallengeCompletionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserChallengeCompletions
+     * const userChallengeCompletion = await prisma.userChallengeCompletion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserChallengeCompletionUpdateManyArgs>(args: SelectSubset<T, UserChallengeCompletionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserChallengeCompletions and returns the data updated in the database.
+     * @param {UserChallengeCompletionUpdateManyAndReturnArgs} args - Arguments to update many UserChallengeCompletions.
+     * @example
+     * // Update many UserChallengeCompletions
+     * const userChallengeCompletion = await prisma.userChallengeCompletion.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserChallengeCompletions and only return the `wallet`
+     * const userChallengeCompletionWithWalletOnly = await prisma.userChallengeCompletion.updateManyAndReturn({
+     *   select: { wallet: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserChallengeCompletionUpdateManyAndReturnArgs>(args: SelectSubset<T, UserChallengeCompletionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserChallengeCompletion.
+     * @param {UserChallengeCompletionUpsertArgs} args - Arguments to update or create a UserChallengeCompletion.
+     * @example
+     * // Update or create a UserChallengeCompletion
+     * const userChallengeCompletion = await prisma.userChallengeCompletion.upsert({
+     *   create: {
+     *     // ... data to create a UserChallengeCompletion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserChallengeCompletion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserChallengeCompletionUpsertArgs>(args: SelectSubset<T, UserChallengeCompletionUpsertArgs<ExtArgs>>): Prisma__UserChallengeCompletionClient<$Result.GetResult<Prisma.$UserChallengeCompletionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserChallengeCompletions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserChallengeCompletionCountArgs} args - Arguments to filter UserChallengeCompletions to count.
+     * @example
+     * // Count the number of UserChallengeCompletions
+     * const count = await prisma.userChallengeCompletion.count({
+     *   where: {
+     *     // ... the filter for the UserChallengeCompletions we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserChallengeCompletionCountArgs>(
+      args?: Subset<T, UserChallengeCompletionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserChallengeCompletionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserChallengeCompletion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserChallengeCompletionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserChallengeCompletionAggregateArgs>(args: Subset<T, UserChallengeCompletionAggregateArgs>): Prisma.PrismaPromise<GetUserChallengeCompletionAggregateType<T>>
+
+    /**
+     * Group by UserChallengeCompletion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserChallengeCompletionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserChallengeCompletionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserChallengeCompletionGroupByArgs['orderBy'] }
+        : { orderBy?: UserChallengeCompletionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserChallengeCompletionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserChallengeCompletionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserChallengeCompletion model
+   */
+  readonly fields: UserChallengeCompletionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserChallengeCompletion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserChallengeCompletionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    challenge<T extends ChallengeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ChallengeDefaultArgs<ExtArgs>>): Prisma__ChallengeClient<$Result.GetResult<Prisma.$ChallengePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserChallengeCompletion model
+   */
+  interface UserChallengeCompletionFieldRefs {
+    readonly wallet: FieldRef<"UserChallengeCompletion", 'String'>
+    readonly challengeId: FieldRef<"UserChallengeCompletion", 'Int'>
+    readonly completionDay: FieldRef<"UserChallengeCompletion", 'String'>
+    readonly completedAt: FieldRef<"UserChallengeCompletion", 'DateTime'>
+    readonly metadata: FieldRef<"UserChallengeCompletion", 'Json'>
+    readonly submissionLink: FieldRef<"UserChallengeCompletion", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserChallengeCompletion findUnique
+   */
+  export type UserChallengeCompletionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionInclude<ExtArgs> | null
+    /**
+     * Filter, which UserChallengeCompletion to fetch.
+     */
+    where: UserChallengeCompletionWhereUniqueInput
+  }
+
+  /**
+   * UserChallengeCompletion findUniqueOrThrow
+   */
+  export type UserChallengeCompletionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionInclude<ExtArgs> | null
+    /**
+     * Filter, which UserChallengeCompletion to fetch.
+     */
+    where: UserChallengeCompletionWhereUniqueInput
+  }
+
+  /**
+   * UserChallengeCompletion findFirst
+   */
+  export type UserChallengeCompletionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionInclude<ExtArgs> | null
+    /**
+     * Filter, which UserChallengeCompletion to fetch.
+     */
+    where?: UserChallengeCompletionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserChallengeCompletions to fetch.
+     */
+    orderBy?: UserChallengeCompletionOrderByWithRelationInput | UserChallengeCompletionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserChallengeCompletions.
+     */
+    cursor?: UserChallengeCompletionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserChallengeCompletions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserChallengeCompletions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserChallengeCompletions.
+     */
+    distinct?: UserChallengeCompletionScalarFieldEnum | UserChallengeCompletionScalarFieldEnum[]
+  }
+
+  /**
+   * UserChallengeCompletion findFirstOrThrow
+   */
+  export type UserChallengeCompletionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionInclude<ExtArgs> | null
+    /**
+     * Filter, which UserChallengeCompletion to fetch.
+     */
+    where?: UserChallengeCompletionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserChallengeCompletions to fetch.
+     */
+    orderBy?: UserChallengeCompletionOrderByWithRelationInput | UserChallengeCompletionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserChallengeCompletions.
+     */
+    cursor?: UserChallengeCompletionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserChallengeCompletions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserChallengeCompletions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserChallengeCompletions.
+     */
+    distinct?: UserChallengeCompletionScalarFieldEnum | UserChallengeCompletionScalarFieldEnum[]
+  }
+
+  /**
+   * UserChallengeCompletion findMany
+   */
+  export type UserChallengeCompletionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionInclude<ExtArgs> | null
+    /**
+     * Filter, which UserChallengeCompletions to fetch.
+     */
+    where?: UserChallengeCompletionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserChallengeCompletions to fetch.
+     */
+    orderBy?: UserChallengeCompletionOrderByWithRelationInput | UserChallengeCompletionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserChallengeCompletions.
+     */
+    cursor?: UserChallengeCompletionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserChallengeCompletions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserChallengeCompletions.
+     */
+    skip?: number
+    distinct?: UserChallengeCompletionScalarFieldEnum | UserChallengeCompletionScalarFieldEnum[]
+  }
+
+  /**
+   * UserChallengeCompletion create
+   */
+  export type UserChallengeCompletionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserChallengeCompletion.
+     */
+    data: XOR<UserChallengeCompletionCreateInput, UserChallengeCompletionUncheckedCreateInput>
+  }
+
+  /**
+   * UserChallengeCompletion createMany
+   */
+  export type UserChallengeCompletionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserChallengeCompletions.
+     */
+    data: UserChallengeCompletionCreateManyInput | UserChallengeCompletionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserChallengeCompletion createManyAndReturn
+   */
+  export type UserChallengeCompletionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserChallengeCompletions.
+     */
+    data: UserChallengeCompletionCreateManyInput | UserChallengeCompletionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserChallengeCompletion update
+   */
+  export type UserChallengeCompletionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserChallengeCompletion.
+     */
+    data: XOR<UserChallengeCompletionUpdateInput, UserChallengeCompletionUncheckedUpdateInput>
+    /**
+     * Choose, which UserChallengeCompletion to update.
+     */
+    where: UserChallengeCompletionWhereUniqueInput
+  }
+
+  /**
+   * UserChallengeCompletion updateMany
+   */
+  export type UserChallengeCompletionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserChallengeCompletions.
+     */
+    data: XOR<UserChallengeCompletionUpdateManyMutationInput, UserChallengeCompletionUncheckedUpdateManyInput>
+    /**
+     * Filter which UserChallengeCompletions to update
+     */
+    where?: UserChallengeCompletionWhereInput
+    /**
+     * Limit how many UserChallengeCompletions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserChallengeCompletion updateManyAndReturn
+   */
+  export type UserChallengeCompletionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * The data used to update UserChallengeCompletions.
+     */
+    data: XOR<UserChallengeCompletionUpdateManyMutationInput, UserChallengeCompletionUncheckedUpdateManyInput>
+    /**
+     * Filter which UserChallengeCompletions to update
+     */
+    where?: UserChallengeCompletionWhereInput
+    /**
+     * Limit how many UserChallengeCompletions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserChallengeCompletion upsert
+   */
+  export type UserChallengeCompletionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserChallengeCompletion to update in case it exists.
+     */
+    where: UserChallengeCompletionWhereUniqueInput
+    /**
+     * In case the UserChallengeCompletion found by the `where` argument doesn't exist, create a new UserChallengeCompletion with this data.
+     */
+    create: XOR<UserChallengeCompletionCreateInput, UserChallengeCompletionUncheckedCreateInput>
+    /**
+     * In case the UserChallengeCompletion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserChallengeCompletionUpdateInput, UserChallengeCompletionUncheckedUpdateInput>
+  }
+
+  /**
+   * UserChallengeCompletion delete
+   */
+  export type UserChallengeCompletionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionInclude<ExtArgs> | null
+    /**
+     * Filter which UserChallengeCompletion to delete.
+     */
+    where: UserChallengeCompletionWhereUniqueInput
+  }
+
+  /**
+   * UserChallengeCompletion deleteMany
+   */
+  export type UserChallengeCompletionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserChallengeCompletions to delete
+     */
+    where?: UserChallengeCompletionWhereInput
+    /**
+     * Limit how many UserChallengeCompletions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserChallengeCompletion without action
+   */
+  export type UserChallengeCompletionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserChallengeCompletion
+     */
+    select?: UserChallengeCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserChallengeCompletion
+     */
+    omit?: UserChallengeCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserChallengeCompletionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Notification
+   */
+
+  export type AggregateNotification = {
+    _count: NotificationCountAggregateOutputType | null
+    _avg: NotificationAvgAggregateOutputType | null
+    _sum: NotificationSumAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  export type NotificationAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type NotificationSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type NotificationMinAggregateOutputType = {
+    id: number | null
+    wallet: string | null
+    targetRole: string | null
+    type: string | null
+    readAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type NotificationMaxAggregateOutputType = {
+    id: number | null
+    wallet: string | null
+    targetRole: string | null
+    type: string | null
+    readAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type NotificationCountAggregateOutputType = {
+    id: number
+    wallet: number
+    targetRole: number
+    type: number
+    data: number
+    readAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type NotificationAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type NotificationSumAggregateInputType = {
+    id?: true
+  }
+
+  export type NotificationMinAggregateInputType = {
+    id?: true
+    wallet?: true
+    targetRole?: true
+    type?: true
+    readAt?: true
+    createdAt?: true
+  }
+
+  export type NotificationMaxAggregateInputType = {
+    id?: true
+    wallet?: true
+    targetRole?: true
+    type?: true
+    readAt?: true
+    createdAt?: true
+  }
+
+  export type NotificationCountAggregateInputType = {
+    id?: true
+    wallet?: true
+    targetRole?: true
+    type?: true
+    data?: true
+    readAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type NotificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notification to aggregate.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Notifications
+    **/
+    _count?: true | NotificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: NotificationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: NotificationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type GetNotificationAggregateType<T extends NotificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotification[P]>
+      : GetScalarType<T[P], AggregateNotification[P]>
+  }
+
+
+
+
+  export type NotificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithAggregationInput | NotificationOrderByWithAggregationInput[]
+    by: NotificationScalarFieldEnum[] | NotificationScalarFieldEnum
+    having?: NotificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationCountAggregateInputType | true
+    _avg?: NotificationAvgAggregateInputType
+    _sum?: NotificationSumAggregateInputType
+    _min?: NotificationMinAggregateInputType
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type NotificationGroupByOutputType = {
+    id: number
+    wallet: string | null
+    targetRole: string
+    type: string
+    data: JsonValue
+    readAt: Date | null
+    createdAt: Date
+    _count: NotificationCountAggregateOutputType | null
+    _avg: NotificationAvgAggregateOutputType | null
+    _sum: NotificationSumAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  type GetNotificationGroupByPayload<T extends NotificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NotificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    wallet?: boolean
+    targetRole?: boolean
+    type?: boolean
+    data?: boolean
+    readAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    wallet?: boolean
+    targetRole?: boolean
+    type?: boolean
+    data?: boolean
+    readAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    wallet?: boolean
+    targetRole?: boolean
+    type?: boolean
+    data?: boolean
+    readAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectScalar = {
+    id?: boolean
+    wallet?: boolean
+    targetRole?: boolean
+    type?: boolean
+    data?: boolean
+    readAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "wallet" | "targetRole" | "type" | "data" | "readAt" | "createdAt", ExtArgs["result"]["notification"]>
+
+  export type $NotificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Notification"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      wallet: string | null
+      targetRole: string
+      type: string
+      data: Prisma.JsonValue
+      readAt: Date | null
+      createdAt: Date
+    }, ExtArgs["result"]["notification"]>
+    composites: {}
+  }
+
+  type NotificationGetPayload<S extends boolean | null | undefined | NotificationDefaultArgs> = $Result.GetResult<Prisma.$NotificationPayload, S>
+
+  type NotificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NotificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationCountAggregateInputType | true
+    }
+
+  export interface NotificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Notification'], meta: { name: 'Notification' } }
+    /**
+     * Find zero or one Notification that matches the filter.
+     * @param {NotificationFindUniqueArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NotificationFindUniqueArgs>(args: SelectSubset<T, NotificationFindUniqueArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Notification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NotificationFindUniqueOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NotificationFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NotificationFindFirstArgs>(args?: SelectSubset<T, NotificationFindFirstArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NotificationFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Notifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Notifications
+     * const notifications = await prisma.notification.findMany()
+     * 
+     * // Get first 10 Notifications
+     * const notifications = await prisma.notification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationWithIdOnly = await prisma.notification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NotificationFindManyArgs>(args?: SelectSubset<T, NotificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Notification.
+     * @param {NotificationCreateArgs} args - Arguments to create a Notification.
+     * @example
+     * // Create one Notification
+     * const Notification = await prisma.notification.create({
+     *   data: {
+     *     // ... data to create a Notification
+     *   }
+     * })
+     * 
+     */
+    create<T extends NotificationCreateArgs>(args: SelectSubset<T, NotificationCreateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Notifications.
+     * @param {NotificationCreateManyArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NotificationCreateManyArgs>(args?: SelectSubset<T, NotificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Notifications and returns the data saved in the database.
+     * @param {NotificationCreateManyAndReturnArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NotificationCreateManyAndReturnArgs>(args?: SelectSubset<T, NotificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Notification.
+     * @param {NotificationDeleteArgs} args - Arguments to delete one Notification.
+     * @example
+     * // Delete one Notification
+     * const Notification = await prisma.notification.delete({
+     *   where: {
+     *     // ... filter to delete one Notification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NotificationDeleteArgs>(args: SelectSubset<T, NotificationDeleteArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Notification.
+     * @param {NotificationUpdateArgs} args - Arguments to update one Notification.
+     * @example
+     * // Update one Notification
+     * const notification = await prisma.notification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NotificationUpdateArgs>(args: SelectSubset<T, NotificationUpdateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Notifications.
+     * @param {NotificationDeleteManyArgs} args - Arguments to filter Notifications to delete.
+     * @example
+     * // Delete a few Notifications
+     * const { count } = await prisma.notification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NotificationDeleteManyArgs>(args?: SelectSubset<T, NotificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NotificationUpdateManyArgs>(args: SelectSubset<T, NotificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications and returns the data updated in the database.
+     * @param {NotificationUpdateManyAndReturnArgs} args - Arguments to update many Notifications.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NotificationUpdateManyAndReturnArgs>(args: SelectSubset<T, NotificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Notification.
+     * @param {NotificationUpsertArgs} args - Arguments to update or create a Notification.
+     * @example
+     * // Update or create a Notification
+     * const notification = await prisma.notification.upsert({
+     *   create: {
+     *     // ... data to create a Notification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Notification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NotificationUpsertArgs>(args: SelectSubset<T, NotificationUpsertArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationCountArgs} args - Arguments to filter Notifications to count.
+     * @example
+     * // Count the number of Notifications
+     * const count = await prisma.notification.count({
+     *   where: {
+     *     // ... the filter for the Notifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends NotificationCountArgs>(
+      args?: Subset<T, NotificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationAggregateArgs>(args: Subset<T, NotificationAggregateArgs>): Prisma.PrismaPromise<GetNotificationAggregateType<T>>
+
+    /**
+     * Group by Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NotificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NotificationGroupByArgs['orderBy'] }
+        : { orderBy?: NotificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NotificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Notification model
+   */
+  readonly fields: NotificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Notification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NotificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Notification model
+   */
+  interface NotificationFieldRefs {
+    readonly id: FieldRef<"Notification", 'Int'>
+    readonly wallet: FieldRef<"Notification", 'String'>
+    readonly targetRole: FieldRef<"Notification", 'String'>
+    readonly type: FieldRef<"Notification", 'String'>
+    readonly data: FieldRef<"Notification", 'Json'>
+    readonly readAt: FieldRef<"Notification", 'DateTime'>
+    readonly createdAt: FieldRef<"Notification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Notification findUnique
+   */
+  export type NotificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findUniqueOrThrow
+   */
+  export type NotificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findFirst
+   */
+  export type NotificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findFirstOrThrow
+   */
+  export type NotificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findMany
+   */
+  export type NotificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter, which Notifications to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification create
+   */
+  export type NotificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Notification.
+     */
+    data: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+  }
+
+  /**
+   * Notification createMany
+   */
+  export type NotificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Notification createManyAndReturn
+   */
+  export type NotificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Notification update
+   */
+  export type NotificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Notification.
+     */
+    data: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+    /**
+     * Choose, which Notification to update.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification updateMany
+   */
+  export type NotificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification updateManyAndReturn
+   */
+  export type NotificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification upsert
+   */
+  export type NotificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Notification to update in case it exists.
+     */
+    where: NotificationWhereUniqueInput
+    /**
+     * In case the Notification found by the `where` argument doesn't exist, create a new Notification with this data.
+     */
+    create: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+    /**
+     * In case the Notification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+  }
+
+  /**
+   * Notification delete
+   */
+  export type NotificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Filter which Notification to delete.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification deleteMany
+   */
+  export type NotificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notifications to delete
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification without action
+   */
+  export type NotificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -8051,12 +13021,85 @@ export namespace Prisma {
   export type LeaderboardEntryScalarFieldEnum = (typeof LeaderboardEntryScalarFieldEnum)[keyof typeof LeaderboardEntryScalarFieldEnum]
 
 
+  export const SeasonScalarFieldEnum: {
+    id: 'id',
+    slug: 'slug',
+    name: 'name',
+    description: 'description',
+    imageUrl: 'imageUrl',
+    startAt: 'startAt',
+    endAt: 'endAt',
+    createdAt: 'createdAt',
+    sanityId: 'sanityId'
+  };
+
+  export type SeasonScalarFieldEnum = (typeof SeasonScalarFieldEnum)[keyof typeof SeasonScalarFieldEnum]
+
+
+  export const ChallengeScalarFieldEnum: {
+    id: 'id',
+    slug: 'slug',
+    title: 'title',
+    description: 'description',
+    type: 'type',
+    config: 'config',
+    xpReward: 'xpReward',
+    seasonId: 'seasonId',
+    startsAt: 'startsAt',
+    endsAt: 'endsAt',
+    createdAt: 'createdAt',
+    sanityId: 'sanityId'
+  };
+
+  export type ChallengeScalarFieldEnum = (typeof ChallengeScalarFieldEnum)[keyof typeof ChallengeScalarFieldEnum]
+
+
+  export const UserChallengeCompletionScalarFieldEnum: {
+    wallet: 'wallet',
+    challengeId: 'challengeId',
+    completionDay: 'completionDay',
+    completedAt: 'completedAt',
+    metadata: 'metadata',
+    submissionLink: 'submissionLink'
+  };
+
+  export type UserChallengeCompletionScalarFieldEnum = (typeof UserChallengeCompletionScalarFieldEnum)[keyof typeof UserChallengeCompletionScalarFieldEnum]
+
+
+  export const NotificationScalarFieldEnum: {
+    id: 'id',
+    wallet: 'wallet',
+    targetRole: 'targetRole',
+    type: 'type',
+    data: 'data',
+    readAt: 'readAt',
+    createdAt: 'createdAt'
+  };
+
+  export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -8073,6 +13116,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -8119,6 +13171,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -8508,6 +13574,305 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"LeaderboardEntry"> | Date | string
   }
 
+  export type SeasonWhereInput = {
+    AND?: SeasonWhereInput | SeasonWhereInput[]
+    OR?: SeasonWhereInput[]
+    NOT?: SeasonWhereInput | SeasonWhereInput[]
+    id?: IntFilter<"Season"> | number
+    slug?: StringFilter<"Season"> | string
+    name?: StringFilter<"Season"> | string
+    description?: StringNullableFilter<"Season"> | string | null
+    imageUrl?: StringNullableFilter<"Season"> | string | null
+    startAt?: DateTimeFilter<"Season"> | Date | string
+    endAt?: DateTimeFilter<"Season"> | Date | string
+    createdAt?: DateTimeFilter<"Season"> | Date | string
+    sanityId?: StringNullableFilter<"Season"> | string | null
+    challenges?: ChallengeListRelationFilter
+  }
+
+  export type SeasonOrderByWithRelationInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    startAt?: SortOrder
+    endAt?: SortOrder
+    createdAt?: SortOrder
+    sanityId?: SortOrderInput | SortOrder
+    challenges?: ChallengeOrderByRelationAggregateInput
+  }
+
+  export type SeasonWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    slug?: string
+    sanityId?: string
+    AND?: SeasonWhereInput | SeasonWhereInput[]
+    OR?: SeasonWhereInput[]
+    NOT?: SeasonWhereInput | SeasonWhereInput[]
+    name?: StringFilter<"Season"> | string
+    description?: StringNullableFilter<"Season"> | string | null
+    imageUrl?: StringNullableFilter<"Season"> | string | null
+    startAt?: DateTimeFilter<"Season"> | Date | string
+    endAt?: DateTimeFilter<"Season"> | Date | string
+    createdAt?: DateTimeFilter<"Season"> | Date | string
+    challenges?: ChallengeListRelationFilter
+  }, "id" | "slug" | "sanityId">
+
+  export type SeasonOrderByWithAggregationInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    startAt?: SortOrder
+    endAt?: SortOrder
+    createdAt?: SortOrder
+    sanityId?: SortOrderInput | SortOrder
+    _count?: SeasonCountOrderByAggregateInput
+    _avg?: SeasonAvgOrderByAggregateInput
+    _max?: SeasonMaxOrderByAggregateInput
+    _min?: SeasonMinOrderByAggregateInput
+    _sum?: SeasonSumOrderByAggregateInput
+  }
+
+  export type SeasonScalarWhereWithAggregatesInput = {
+    AND?: SeasonScalarWhereWithAggregatesInput | SeasonScalarWhereWithAggregatesInput[]
+    OR?: SeasonScalarWhereWithAggregatesInput[]
+    NOT?: SeasonScalarWhereWithAggregatesInput | SeasonScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Season"> | number
+    slug?: StringWithAggregatesFilter<"Season"> | string
+    name?: StringWithAggregatesFilter<"Season"> | string
+    description?: StringNullableWithAggregatesFilter<"Season"> | string | null
+    imageUrl?: StringNullableWithAggregatesFilter<"Season"> | string | null
+    startAt?: DateTimeWithAggregatesFilter<"Season"> | Date | string
+    endAt?: DateTimeWithAggregatesFilter<"Season"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Season"> | Date | string
+    sanityId?: StringNullableWithAggregatesFilter<"Season"> | string | null
+  }
+
+  export type ChallengeWhereInput = {
+    AND?: ChallengeWhereInput | ChallengeWhereInput[]
+    OR?: ChallengeWhereInput[]
+    NOT?: ChallengeWhereInput | ChallengeWhereInput[]
+    id?: IntFilter<"Challenge"> | number
+    slug?: StringFilter<"Challenge"> | string
+    title?: StringFilter<"Challenge"> | string
+    description?: StringNullableFilter<"Challenge"> | string | null
+    type?: StringFilter<"Challenge"> | string
+    config?: JsonFilter<"Challenge">
+    xpReward?: IntFilter<"Challenge"> | number
+    seasonId?: IntNullableFilter<"Challenge"> | number | null
+    startsAt?: DateTimeNullableFilter<"Challenge"> | Date | string | null
+    endsAt?: DateTimeNullableFilter<"Challenge"> | Date | string | null
+    createdAt?: DateTimeFilter<"Challenge"> | Date | string
+    sanityId?: StringNullableFilter<"Challenge"> | string | null
+    season?: XOR<SeasonNullableScalarRelationFilter, SeasonWhereInput> | null
+    completions?: UserChallengeCompletionListRelationFilter
+  }
+
+  export type ChallengeOrderByWithRelationInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    type?: SortOrder
+    config?: SortOrder
+    xpReward?: SortOrder
+    seasonId?: SortOrderInput | SortOrder
+    startsAt?: SortOrderInput | SortOrder
+    endsAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    sanityId?: SortOrderInput | SortOrder
+    season?: SeasonOrderByWithRelationInput
+    completions?: UserChallengeCompletionOrderByRelationAggregateInput
+  }
+
+  export type ChallengeWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    slug?: string
+    sanityId?: string
+    AND?: ChallengeWhereInput | ChallengeWhereInput[]
+    OR?: ChallengeWhereInput[]
+    NOT?: ChallengeWhereInput | ChallengeWhereInput[]
+    title?: StringFilter<"Challenge"> | string
+    description?: StringNullableFilter<"Challenge"> | string | null
+    type?: StringFilter<"Challenge"> | string
+    config?: JsonFilter<"Challenge">
+    xpReward?: IntFilter<"Challenge"> | number
+    seasonId?: IntNullableFilter<"Challenge"> | number | null
+    startsAt?: DateTimeNullableFilter<"Challenge"> | Date | string | null
+    endsAt?: DateTimeNullableFilter<"Challenge"> | Date | string | null
+    createdAt?: DateTimeFilter<"Challenge"> | Date | string
+    season?: XOR<SeasonNullableScalarRelationFilter, SeasonWhereInput> | null
+    completions?: UserChallengeCompletionListRelationFilter
+  }, "id" | "slug" | "sanityId">
+
+  export type ChallengeOrderByWithAggregationInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    type?: SortOrder
+    config?: SortOrder
+    xpReward?: SortOrder
+    seasonId?: SortOrderInput | SortOrder
+    startsAt?: SortOrderInput | SortOrder
+    endsAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    sanityId?: SortOrderInput | SortOrder
+    _count?: ChallengeCountOrderByAggregateInput
+    _avg?: ChallengeAvgOrderByAggregateInput
+    _max?: ChallengeMaxOrderByAggregateInput
+    _min?: ChallengeMinOrderByAggregateInput
+    _sum?: ChallengeSumOrderByAggregateInput
+  }
+
+  export type ChallengeScalarWhereWithAggregatesInput = {
+    AND?: ChallengeScalarWhereWithAggregatesInput | ChallengeScalarWhereWithAggregatesInput[]
+    OR?: ChallengeScalarWhereWithAggregatesInput[]
+    NOT?: ChallengeScalarWhereWithAggregatesInput | ChallengeScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Challenge"> | number
+    slug?: StringWithAggregatesFilter<"Challenge"> | string
+    title?: StringWithAggregatesFilter<"Challenge"> | string
+    description?: StringNullableWithAggregatesFilter<"Challenge"> | string | null
+    type?: StringWithAggregatesFilter<"Challenge"> | string
+    config?: JsonWithAggregatesFilter<"Challenge">
+    xpReward?: IntWithAggregatesFilter<"Challenge"> | number
+    seasonId?: IntNullableWithAggregatesFilter<"Challenge"> | number | null
+    startsAt?: DateTimeNullableWithAggregatesFilter<"Challenge"> | Date | string | null
+    endsAt?: DateTimeNullableWithAggregatesFilter<"Challenge"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Challenge"> | Date | string
+    sanityId?: StringNullableWithAggregatesFilter<"Challenge"> | string | null
+  }
+
+  export type UserChallengeCompletionWhereInput = {
+    AND?: UserChallengeCompletionWhereInput | UserChallengeCompletionWhereInput[]
+    OR?: UserChallengeCompletionWhereInput[]
+    NOT?: UserChallengeCompletionWhereInput | UserChallengeCompletionWhereInput[]
+    wallet?: StringFilter<"UserChallengeCompletion"> | string
+    challengeId?: IntFilter<"UserChallengeCompletion"> | number
+    completionDay?: StringFilter<"UserChallengeCompletion"> | string
+    completedAt?: DateTimeFilter<"UserChallengeCompletion"> | Date | string
+    metadata?: JsonNullableFilter<"UserChallengeCompletion">
+    submissionLink?: StringNullableFilter<"UserChallengeCompletion"> | string | null
+    challenge?: XOR<ChallengeScalarRelationFilter, ChallengeWhereInput>
+  }
+
+  export type UserChallengeCompletionOrderByWithRelationInput = {
+    wallet?: SortOrder
+    challengeId?: SortOrder
+    completionDay?: SortOrder
+    completedAt?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+    submissionLink?: SortOrderInput | SortOrder
+    challenge?: ChallengeOrderByWithRelationInput
+  }
+
+  export type UserChallengeCompletionWhereUniqueInput = Prisma.AtLeast<{
+    wallet_challengeId_completionDay?: UserChallengeCompletionWalletChallengeIdCompletionDayCompoundUniqueInput
+    AND?: UserChallengeCompletionWhereInput | UserChallengeCompletionWhereInput[]
+    OR?: UserChallengeCompletionWhereInput[]
+    NOT?: UserChallengeCompletionWhereInput | UserChallengeCompletionWhereInput[]
+    wallet?: StringFilter<"UserChallengeCompletion"> | string
+    challengeId?: IntFilter<"UserChallengeCompletion"> | number
+    completionDay?: StringFilter<"UserChallengeCompletion"> | string
+    completedAt?: DateTimeFilter<"UserChallengeCompletion"> | Date | string
+    metadata?: JsonNullableFilter<"UserChallengeCompletion">
+    submissionLink?: StringNullableFilter<"UserChallengeCompletion"> | string | null
+    challenge?: XOR<ChallengeScalarRelationFilter, ChallengeWhereInput>
+  }, "wallet_challengeId_completionDay">
+
+  export type UserChallengeCompletionOrderByWithAggregationInput = {
+    wallet?: SortOrder
+    challengeId?: SortOrder
+    completionDay?: SortOrder
+    completedAt?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+    submissionLink?: SortOrderInput | SortOrder
+    _count?: UserChallengeCompletionCountOrderByAggregateInput
+    _avg?: UserChallengeCompletionAvgOrderByAggregateInput
+    _max?: UserChallengeCompletionMaxOrderByAggregateInput
+    _min?: UserChallengeCompletionMinOrderByAggregateInput
+    _sum?: UserChallengeCompletionSumOrderByAggregateInput
+  }
+
+  export type UserChallengeCompletionScalarWhereWithAggregatesInput = {
+    AND?: UserChallengeCompletionScalarWhereWithAggregatesInput | UserChallengeCompletionScalarWhereWithAggregatesInput[]
+    OR?: UserChallengeCompletionScalarWhereWithAggregatesInput[]
+    NOT?: UserChallengeCompletionScalarWhereWithAggregatesInput | UserChallengeCompletionScalarWhereWithAggregatesInput[]
+    wallet?: StringWithAggregatesFilter<"UserChallengeCompletion"> | string
+    challengeId?: IntWithAggregatesFilter<"UserChallengeCompletion"> | number
+    completionDay?: StringWithAggregatesFilter<"UserChallengeCompletion"> | string
+    completedAt?: DateTimeWithAggregatesFilter<"UserChallengeCompletion"> | Date | string
+    metadata?: JsonNullableWithAggregatesFilter<"UserChallengeCompletion">
+    submissionLink?: StringNullableWithAggregatesFilter<"UserChallengeCompletion"> | string | null
+  }
+
+  export type NotificationWhereInput = {
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    id?: IntFilter<"Notification"> | number
+    wallet?: StringNullableFilter<"Notification"> | string | null
+    targetRole?: StringFilter<"Notification"> | string
+    type?: StringFilter<"Notification"> | string
+    data?: JsonFilter<"Notification">
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+  }
+
+  export type NotificationOrderByWithRelationInput = {
+    id?: SortOrder
+    wallet?: SortOrderInput | SortOrder
+    targetRole?: SortOrder
+    type?: SortOrder
+    data?: SortOrder
+    readAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type NotificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    wallet?: StringNullableFilter<"Notification"> | string | null
+    targetRole?: StringFilter<"Notification"> | string
+    type?: StringFilter<"Notification"> | string
+    data?: JsonFilter<"Notification">
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+  }, "id">
+
+  export type NotificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    wallet?: SortOrderInput | SortOrder
+    targetRole?: SortOrder
+    type?: SortOrder
+    data?: SortOrder
+    readAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: NotificationCountOrderByAggregateInput
+    _avg?: NotificationAvgOrderByAggregateInput
+    _max?: NotificationMaxOrderByAggregateInput
+    _min?: NotificationMinOrderByAggregateInput
+    _sum?: NotificationSumOrderByAggregateInput
+  }
+
+  export type NotificationScalarWhereWithAggregatesInput = {
+    AND?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    OR?: NotificationScalarWhereWithAggregatesInput[]
+    NOT?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Notification"> | number
+    wallet?: StringNullableWithAggregatesFilter<"Notification"> | string | null
+    targetRole?: StringWithAggregatesFilter<"Notification"> | string
+    type?: StringWithAggregatesFilter<"Notification"> | string
+    data?: JsonWithAggregatesFilter<"Notification">
+    readAt?: DateTimeNullableWithAggregatesFilter<"Notification"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
+  }
+
   export type CredentialCollectionCreateInput = {
     trackId: number
     collectionAddress: string
@@ -8883,6 +14248,325 @@ export namespace Prisma {
     totalXp?: IntFieldUpdateOperationsInput | number
     coursesCompleted?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SeasonCreateInput = {
+    slug: string
+    name: string
+    description?: string | null
+    imageUrl?: string | null
+    startAt: Date | string
+    endAt: Date | string
+    createdAt?: Date | string
+    sanityId?: string | null
+    challenges?: ChallengeCreateNestedManyWithoutSeasonInput
+  }
+
+  export type SeasonUncheckedCreateInput = {
+    id?: number
+    slug: string
+    name: string
+    description?: string | null
+    imageUrl?: string | null
+    startAt: Date | string
+    endAt: Date | string
+    createdAt?: Date | string
+    sanityId?: string | null
+    challenges?: ChallengeUncheckedCreateNestedManyWithoutSeasonInput
+  }
+
+  export type SeasonUpdateInput = {
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+    challenges?: ChallengeUpdateManyWithoutSeasonNestedInput
+  }
+
+  export type SeasonUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+    challenges?: ChallengeUncheckedUpdateManyWithoutSeasonNestedInput
+  }
+
+  export type SeasonCreateManyInput = {
+    id?: number
+    slug: string
+    name: string
+    description?: string | null
+    imageUrl?: string | null
+    startAt: Date | string
+    endAt: Date | string
+    createdAt?: Date | string
+    sanityId?: string | null
+  }
+
+  export type SeasonUpdateManyMutationInput = {
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SeasonUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ChallengeCreateInput = {
+    slug: string
+    title: string
+    description?: string | null
+    type: string
+    config: JsonNullValueInput | InputJsonValue
+    xpReward?: number
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    createdAt?: Date | string
+    sanityId?: string | null
+    season?: SeasonCreateNestedOneWithoutChallengesInput
+    completions?: UserChallengeCompletionCreateNestedManyWithoutChallengeInput
+  }
+
+  export type ChallengeUncheckedCreateInput = {
+    id?: number
+    slug: string
+    title: string
+    description?: string | null
+    type: string
+    config: JsonNullValueInput | InputJsonValue
+    xpReward?: number
+    seasonId?: number | null
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    createdAt?: Date | string
+    sanityId?: string | null
+    completions?: UserChallengeCompletionUncheckedCreateNestedManyWithoutChallengeInput
+  }
+
+  export type ChallengeUpdateInput = {
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    xpReward?: IntFieldUpdateOperationsInput | number
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+    season?: SeasonUpdateOneWithoutChallengesNestedInput
+    completions?: UserChallengeCompletionUpdateManyWithoutChallengeNestedInput
+  }
+
+  export type ChallengeUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    xpReward?: IntFieldUpdateOperationsInput | number
+    seasonId?: NullableIntFieldUpdateOperationsInput | number | null
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+    completions?: UserChallengeCompletionUncheckedUpdateManyWithoutChallengeNestedInput
+  }
+
+  export type ChallengeCreateManyInput = {
+    id?: number
+    slug: string
+    title: string
+    description?: string | null
+    type: string
+    config: JsonNullValueInput | InputJsonValue
+    xpReward?: number
+    seasonId?: number | null
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    createdAt?: Date | string
+    sanityId?: string | null
+  }
+
+  export type ChallengeUpdateManyMutationInput = {
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    xpReward?: IntFieldUpdateOperationsInput | number
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ChallengeUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    xpReward?: IntFieldUpdateOperationsInput | number
+    seasonId?: NullableIntFieldUpdateOperationsInput | number | null
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserChallengeCompletionCreateInput = {
+    wallet: string
+    completionDay: string
+    completedAt?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: string | null
+    challenge: ChallengeCreateNestedOneWithoutCompletionsInput
+  }
+
+  export type UserChallengeCompletionUncheckedCreateInput = {
+    wallet: string
+    challengeId: number
+    completionDay: string
+    completedAt?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: string | null
+  }
+
+  export type UserChallengeCompletionUpdateInput = {
+    wallet?: StringFieldUpdateOperationsInput | string
+    completionDay?: StringFieldUpdateOperationsInput | string
+    completedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: NullableStringFieldUpdateOperationsInput | string | null
+    challenge?: ChallengeUpdateOneRequiredWithoutCompletionsNestedInput
+  }
+
+  export type UserChallengeCompletionUncheckedUpdateInput = {
+    wallet?: StringFieldUpdateOperationsInput | string
+    challengeId?: IntFieldUpdateOperationsInput | number
+    completionDay?: StringFieldUpdateOperationsInput | string
+    completedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserChallengeCompletionCreateManyInput = {
+    wallet: string
+    challengeId: number
+    completionDay: string
+    completedAt?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: string | null
+  }
+
+  export type UserChallengeCompletionUpdateManyMutationInput = {
+    wallet?: StringFieldUpdateOperationsInput | string
+    completionDay?: StringFieldUpdateOperationsInput | string
+    completedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserChallengeCompletionUncheckedUpdateManyInput = {
+    wallet?: StringFieldUpdateOperationsInput | string
+    challengeId?: IntFieldUpdateOperationsInput | number
+    completionDay?: StringFieldUpdateOperationsInput | string
+    completedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type NotificationCreateInput = {
+    wallet?: string | null
+    targetRole: string
+    type: string
+    data: JsonNullValueInput | InputJsonValue
+    readAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationUncheckedCreateInput = {
+    id?: number
+    wallet?: string | null
+    targetRole: string
+    type: string
+    data: JsonNullValueInput | InputJsonValue
+    readAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationUpdateInput = {
+    wallet?: NullableStringFieldUpdateOperationsInput | string | null
+    targetRole?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    wallet?: NullableStringFieldUpdateOperationsInput | string | null
+    targetRole?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationCreateManyInput = {
+    id?: number
+    wallet?: string | null
+    targetRole: string
+    type: string
+    data: JsonNullValueInput | InputJsonValue
+    readAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type NotificationUpdateManyMutationInput = {
+    wallet?: NullableStringFieldUpdateOperationsInput | string | null
+    targetRole?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    wallet?: NullableStringFieldUpdateOperationsInput | string | null
+    targetRole?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -9320,6 +15004,308 @@ export namespace Prisma {
     coursesCompleted?: SortOrder
   }
 
+  export type ChallengeListRelationFilter = {
+    every?: ChallengeWhereInput
+    some?: ChallengeWhereInput
+    none?: ChallengeWhereInput
+  }
+
+  export type ChallengeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SeasonCountOrderByAggregateInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    imageUrl?: SortOrder
+    startAt?: SortOrder
+    endAt?: SortOrder
+    createdAt?: SortOrder
+    sanityId?: SortOrder
+  }
+
+  export type SeasonAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type SeasonMaxOrderByAggregateInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    imageUrl?: SortOrder
+    startAt?: SortOrder
+    endAt?: SortOrder
+    createdAt?: SortOrder
+    sanityId?: SortOrder
+  }
+
+  export type SeasonMinOrderByAggregateInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    imageUrl?: SortOrder
+    startAt?: SortOrder
+    endAt?: SortOrder
+    createdAt?: SortOrder
+    sanityId?: SortOrder
+  }
+
+  export type SeasonSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type SeasonNullableScalarRelationFilter = {
+    is?: SeasonWhereInput | null
+    isNot?: SeasonWhereInput | null
+  }
+
+  export type UserChallengeCompletionListRelationFilter = {
+    every?: UserChallengeCompletionWhereInput
+    some?: UserChallengeCompletionWhereInput
+    none?: UserChallengeCompletionWhereInput
+  }
+
+  export type UserChallengeCompletionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ChallengeCountOrderByAggregateInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    config?: SortOrder
+    xpReward?: SortOrder
+    seasonId?: SortOrder
+    startsAt?: SortOrder
+    endsAt?: SortOrder
+    createdAt?: SortOrder
+    sanityId?: SortOrder
+  }
+
+  export type ChallengeAvgOrderByAggregateInput = {
+    id?: SortOrder
+    xpReward?: SortOrder
+    seasonId?: SortOrder
+  }
+
+  export type ChallengeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    xpReward?: SortOrder
+    seasonId?: SortOrder
+    startsAt?: SortOrder
+    endsAt?: SortOrder
+    createdAt?: SortOrder
+    sanityId?: SortOrder
+  }
+
+  export type ChallengeMinOrderByAggregateInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    xpReward?: SortOrder
+    seasonId?: SortOrder
+    startsAt?: SortOrder
+    endsAt?: SortOrder
+    createdAt?: SortOrder
+    sanityId?: SortOrder
+  }
+
+  export type ChallengeSumOrderByAggregateInput = {
+    id?: SortOrder
+    xpReward?: SortOrder
+    seasonId?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type ChallengeScalarRelationFilter = {
+    is?: ChallengeWhereInput
+    isNot?: ChallengeWhereInput
+  }
+
+  export type UserChallengeCompletionWalletChallengeIdCompletionDayCompoundUniqueInput = {
+    wallet: string
+    challengeId: number
+    completionDay: string
+  }
+
+  export type UserChallengeCompletionCountOrderByAggregateInput = {
+    wallet?: SortOrder
+    challengeId?: SortOrder
+    completionDay?: SortOrder
+    completedAt?: SortOrder
+    metadata?: SortOrder
+    submissionLink?: SortOrder
+  }
+
+  export type UserChallengeCompletionAvgOrderByAggregateInput = {
+    challengeId?: SortOrder
+  }
+
+  export type UserChallengeCompletionMaxOrderByAggregateInput = {
+    wallet?: SortOrder
+    challengeId?: SortOrder
+    completionDay?: SortOrder
+    completedAt?: SortOrder
+    submissionLink?: SortOrder
+  }
+
+  export type UserChallengeCompletionMinOrderByAggregateInput = {
+    wallet?: SortOrder
+    challengeId?: SortOrder
+    completionDay?: SortOrder
+    completedAt?: SortOrder
+    submissionLink?: SortOrder
+  }
+
+  export type UserChallengeCompletionSumOrderByAggregateInput = {
+    challengeId?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type NotificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    wallet?: SortOrder
+    targetRole?: SortOrder
+    type?: SortOrder
+    data?: SortOrder
+    readAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type NotificationAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type NotificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    wallet?: SortOrder
+    targetRole?: SortOrder
+    type?: SortOrder
+    readAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type NotificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    wallet?: SortOrder
+    targetRole?: SortOrder
+    type?: SortOrder
+    readAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type NotificationSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -9520,6 +15506,120 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLessonCompletionsInput, UserUpdateWithoutLessonCompletionsInput>, UserUncheckedUpdateWithoutLessonCompletionsInput>
   }
 
+  export type ChallengeCreateNestedManyWithoutSeasonInput = {
+    create?: XOR<ChallengeCreateWithoutSeasonInput, ChallengeUncheckedCreateWithoutSeasonInput> | ChallengeCreateWithoutSeasonInput[] | ChallengeUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: ChallengeCreateOrConnectWithoutSeasonInput | ChallengeCreateOrConnectWithoutSeasonInput[]
+    createMany?: ChallengeCreateManySeasonInputEnvelope
+    connect?: ChallengeWhereUniqueInput | ChallengeWhereUniqueInput[]
+  }
+
+  export type ChallengeUncheckedCreateNestedManyWithoutSeasonInput = {
+    create?: XOR<ChallengeCreateWithoutSeasonInput, ChallengeUncheckedCreateWithoutSeasonInput> | ChallengeCreateWithoutSeasonInput[] | ChallengeUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: ChallengeCreateOrConnectWithoutSeasonInput | ChallengeCreateOrConnectWithoutSeasonInput[]
+    createMany?: ChallengeCreateManySeasonInputEnvelope
+    connect?: ChallengeWhereUniqueInput | ChallengeWhereUniqueInput[]
+  }
+
+  export type ChallengeUpdateManyWithoutSeasonNestedInput = {
+    create?: XOR<ChallengeCreateWithoutSeasonInput, ChallengeUncheckedCreateWithoutSeasonInput> | ChallengeCreateWithoutSeasonInput[] | ChallengeUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: ChallengeCreateOrConnectWithoutSeasonInput | ChallengeCreateOrConnectWithoutSeasonInput[]
+    upsert?: ChallengeUpsertWithWhereUniqueWithoutSeasonInput | ChallengeUpsertWithWhereUniqueWithoutSeasonInput[]
+    createMany?: ChallengeCreateManySeasonInputEnvelope
+    set?: ChallengeWhereUniqueInput | ChallengeWhereUniqueInput[]
+    disconnect?: ChallengeWhereUniqueInput | ChallengeWhereUniqueInput[]
+    delete?: ChallengeWhereUniqueInput | ChallengeWhereUniqueInput[]
+    connect?: ChallengeWhereUniqueInput | ChallengeWhereUniqueInput[]
+    update?: ChallengeUpdateWithWhereUniqueWithoutSeasonInput | ChallengeUpdateWithWhereUniqueWithoutSeasonInput[]
+    updateMany?: ChallengeUpdateManyWithWhereWithoutSeasonInput | ChallengeUpdateManyWithWhereWithoutSeasonInput[]
+    deleteMany?: ChallengeScalarWhereInput | ChallengeScalarWhereInput[]
+  }
+
+  export type ChallengeUncheckedUpdateManyWithoutSeasonNestedInput = {
+    create?: XOR<ChallengeCreateWithoutSeasonInput, ChallengeUncheckedCreateWithoutSeasonInput> | ChallengeCreateWithoutSeasonInput[] | ChallengeUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: ChallengeCreateOrConnectWithoutSeasonInput | ChallengeCreateOrConnectWithoutSeasonInput[]
+    upsert?: ChallengeUpsertWithWhereUniqueWithoutSeasonInput | ChallengeUpsertWithWhereUniqueWithoutSeasonInput[]
+    createMany?: ChallengeCreateManySeasonInputEnvelope
+    set?: ChallengeWhereUniqueInput | ChallengeWhereUniqueInput[]
+    disconnect?: ChallengeWhereUniqueInput | ChallengeWhereUniqueInput[]
+    delete?: ChallengeWhereUniqueInput | ChallengeWhereUniqueInput[]
+    connect?: ChallengeWhereUniqueInput | ChallengeWhereUniqueInput[]
+    update?: ChallengeUpdateWithWhereUniqueWithoutSeasonInput | ChallengeUpdateWithWhereUniqueWithoutSeasonInput[]
+    updateMany?: ChallengeUpdateManyWithWhereWithoutSeasonInput | ChallengeUpdateManyWithWhereWithoutSeasonInput[]
+    deleteMany?: ChallengeScalarWhereInput | ChallengeScalarWhereInput[]
+  }
+
+  export type SeasonCreateNestedOneWithoutChallengesInput = {
+    create?: XOR<SeasonCreateWithoutChallengesInput, SeasonUncheckedCreateWithoutChallengesInput>
+    connectOrCreate?: SeasonCreateOrConnectWithoutChallengesInput
+    connect?: SeasonWhereUniqueInput
+  }
+
+  export type UserChallengeCompletionCreateNestedManyWithoutChallengeInput = {
+    create?: XOR<UserChallengeCompletionCreateWithoutChallengeInput, UserChallengeCompletionUncheckedCreateWithoutChallengeInput> | UserChallengeCompletionCreateWithoutChallengeInput[] | UserChallengeCompletionUncheckedCreateWithoutChallengeInput[]
+    connectOrCreate?: UserChallengeCompletionCreateOrConnectWithoutChallengeInput | UserChallengeCompletionCreateOrConnectWithoutChallengeInput[]
+    createMany?: UserChallengeCompletionCreateManyChallengeInputEnvelope
+    connect?: UserChallengeCompletionWhereUniqueInput | UserChallengeCompletionWhereUniqueInput[]
+  }
+
+  export type UserChallengeCompletionUncheckedCreateNestedManyWithoutChallengeInput = {
+    create?: XOR<UserChallengeCompletionCreateWithoutChallengeInput, UserChallengeCompletionUncheckedCreateWithoutChallengeInput> | UserChallengeCompletionCreateWithoutChallengeInput[] | UserChallengeCompletionUncheckedCreateWithoutChallengeInput[]
+    connectOrCreate?: UserChallengeCompletionCreateOrConnectWithoutChallengeInput | UserChallengeCompletionCreateOrConnectWithoutChallengeInput[]
+    createMany?: UserChallengeCompletionCreateManyChallengeInputEnvelope
+    connect?: UserChallengeCompletionWhereUniqueInput | UserChallengeCompletionWhereUniqueInput[]
+  }
+
+  export type SeasonUpdateOneWithoutChallengesNestedInput = {
+    create?: XOR<SeasonCreateWithoutChallengesInput, SeasonUncheckedCreateWithoutChallengesInput>
+    connectOrCreate?: SeasonCreateOrConnectWithoutChallengesInput
+    upsert?: SeasonUpsertWithoutChallengesInput
+    disconnect?: SeasonWhereInput | boolean
+    delete?: SeasonWhereInput | boolean
+    connect?: SeasonWhereUniqueInput
+    update?: XOR<XOR<SeasonUpdateToOneWithWhereWithoutChallengesInput, SeasonUpdateWithoutChallengesInput>, SeasonUncheckedUpdateWithoutChallengesInput>
+  }
+
+  export type UserChallengeCompletionUpdateManyWithoutChallengeNestedInput = {
+    create?: XOR<UserChallengeCompletionCreateWithoutChallengeInput, UserChallengeCompletionUncheckedCreateWithoutChallengeInput> | UserChallengeCompletionCreateWithoutChallengeInput[] | UserChallengeCompletionUncheckedCreateWithoutChallengeInput[]
+    connectOrCreate?: UserChallengeCompletionCreateOrConnectWithoutChallengeInput | UserChallengeCompletionCreateOrConnectWithoutChallengeInput[]
+    upsert?: UserChallengeCompletionUpsertWithWhereUniqueWithoutChallengeInput | UserChallengeCompletionUpsertWithWhereUniqueWithoutChallengeInput[]
+    createMany?: UserChallengeCompletionCreateManyChallengeInputEnvelope
+    set?: UserChallengeCompletionWhereUniqueInput | UserChallengeCompletionWhereUniqueInput[]
+    disconnect?: UserChallengeCompletionWhereUniqueInput | UserChallengeCompletionWhereUniqueInput[]
+    delete?: UserChallengeCompletionWhereUniqueInput | UserChallengeCompletionWhereUniqueInput[]
+    connect?: UserChallengeCompletionWhereUniqueInput | UserChallengeCompletionWhereUniqueInput[]
+    update?: UserChallengeCompletionUpdateWithWhereUniqueWithoutChallengeInput | UserChallengeCompletionUpdateWithWhereUniqueWithoutChallengeInput[]
+    updateMany?: UserChallengeCompletionUpdateManyWithWhereWithoutChallengeInput | UserChallengeCompletionUpdateManyWithWhereWithoutChallengeInput[]
+    deleteMany?: UserChallengeCompletionScalarWhereInput | UserChallengeCompletionScalarWhereInput[]
+  }
+
+  export type UserChallengeCompletionUncheckedUpdateManyWithoutChallengeNestedInput = {
+    create?: XOR<UserChallengeCompletionCreateWithoutChallengeInput, UserChallengeCompletionUncheckedCreateWithoutChallengeInput> | UserChallengeCompletionCreateWithoutChallengeInput[] | UserChallengeCompletionUncheckedCreateWithoutChallengeInput[]
+    connectOrCreate?: UserChallengeCompletionCreateOrConnectWithoutChallengeInput | UserChallengeCompletionCreateOrConnectWithoutChallengeInput[]
+    upsert?: UserChallengeCompletionUpsertWithWhereUniqueWithoutChallengeInput | UserChallengeCompletionUpsertWithWhereUniqueWithoutChallengeInput[]
+    createMany?: UserChallengeCompletionCreateManyChallengeInputEnvelope
+    set?: UserChallengeCompletionWhereUniqueInput | UserChallengeCompletionWhereUniqueInput[]
+    disconnect?: UserChallengeCompletionWhereUniqueInput | UserChallengeCompletionWhereUniqueInput[]
+    delete?: UserChallengeCompletionWhereUniqueInput | UserChallengeCompletionWhereUniqueInput[]
+    connect?: UserChallengeCompletionWhereUniqueInput | UserChallengeCompletionWhereUniqueInput[]
+    update?: UserChallengeCompletionUpdateWithWhereUniqueWithoutChallengeInput | UserChallengeCompletionUpdateWithWhereUniqueWithoutChallengeInput[]
+    updateMany?: UserChallengeCompletionUpdateManyWithWhereWithoutChallengeInput | UserChallengeCompletionUpdateManyWithWhereWithoutChallengeInput[]
+    deleteMany?: UserChallengeCompletionScalarWhereInput | UserChallengeCompletionScalarWhereInput[]
+  }
+
+  export type ChallengeCreateNestedOneWithoutCompletionsInput = {
+    create?: XOR<ChallengeCreateWithoutCompletionsInput, ChallengeUncheckedCreateWithoutCompletionsInput>
+    connectOrCreate?: ChallengeCreateOrConnectWithoutCompletionsInput
+    connect?: ChallengeWhereUniqueInput
+  }
+
+  export type ChallengeUpdateOneRequiredWithoutCompletionsNestedInput = {
+    create?: XOR<ChallengeCreateWithoutCompletionsInput, ChallengeUncheckedCreateWithoutCompletionsInput>
+    connectOrCreate?: ChallengeCreateOrConnectWithoutCompletionsInput
+    upsert?: ChallengeUpsertWithoutCompletionsInput
+    connect?: ChallengeWhereUniqueInput
+    update?: XOR<XOR<ChallengeUpdateToOneWithWhereWithoutCompletionsInput, ChallengeUpdateWithoutCompletionsInput>, ChallengeUncheckedUpdateWithoutCompletionsInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9706,6 +15806,52 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type EnrollmentCreateWithoutUserInput = {
@@ -10019,6 +16165,269 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type ChallengeCreateWithoutSeasonInput = {
+    slug: string
+    title: string
+    description?: string | null
+    type: string
+    config: JsonNullValueInput | InputJsonValue
+    xpReward?: number
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    createdAt?: Date | string
+    sanityId?: string | null
+    completions?: UserChallengeCompletionCreateNestedManyWithoutChallengeInput
+  }
+
+  export type ChallengeUncheckedCreateWithoutSeasonInput = {
+    id?: number
+    slug: string
+    title: string
+    description?: string | null
+    type: string
+    config: JsonNullValueInput | InputJsonValue
+    xpReward?: number
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    createdAt?: Date | string
+    sanityId?: string | null
+    completions?: UserChallengeCompletionUncheckedCreateNestedManyWithoutChallengeInput
+  }
+
+  export type ChallengeCreateOrConnectWithoutSeasonInput = {
+    where: ChallengeWhereUniqueInput
+    create: XOR<ChallengeCreateWithoutSeasonInput, ChallengeUncheckedCreateWithoutSeasonInput>
+  }
+
+  export type ChallengeCreateManySeasonInputEnvelope = {
+    data: ChallengeCreateManySeasonInput | ChallengeCreateManySeasonInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ChallengeUpsertWithWhereUniqueWithoutSeasonInput = {
+    where: ChallengeWhereUniqueInput
+    update: XOR<ChallengeUpdateWithoutSeasonInput, ChallengeUncheckedUpdateWithoutSeasonInput>
+    create: XOR<ChallengeCreateWithoutSeasonInput, ChallengeUncheckedCreateWithoutSeasonInput>
+  }
+
+  export type ChallengeUpdateWithWhereUniqueWithoutSeasonInput = {
+    where: ChallengeWhereUniqueInput
+    data: XOR<ChallengeUpdateWithoutSeasonInput, ChallengeUncheckedUpdateWithoutSeasonInput>
+  }
+
+  export type ChallengeUpdateManyWithWhereWithoutSeasonInput = {
+    where: ChallengeScalarWhereInput
+    data: XOR<ChallengeUpdateManyMutationInput, ChallengeUncheckedUpdateManyWithoutSeasonInput>
+  }
+
+  export type ChallengeScalarWhereInput = {
+    AND?: ChallengeScalarWhereInput | ChallengeScalarWhereInput[]
+    OR?: ChallengeScalarWhereInput[]
+    NOT?: ChallengeScalarWhereInput | ChallengeScalarWhereInput[]
+    id?: IntFilter<"Challenge"> | number
+    slug?: StringFilter<"Challenge"> | string
+    title?: StringFilter<"Challenge"> | string
+    description?: StringNullableFilter<"Challenge"> | string | null
+    type?: StringFilter<"Challenge"> | string
+    config?: JsonFilter<"Challenge">
+    xpReward?: IntFilter<"Challenge"> | number
+    seasonId?: IntNullableFilter<"Challenge"> | number | null
+    startsAt?: DateTimeNullableFilter<"Challenge"> | Date | string | null
+    endsAt?: DateTimeNullableFilter<"Challenge"> | Date | string | null
+    createdAt?: DateTimeFilter<"Challenge"> | Date | string
+    sanityId?: StringNullableFilter<"Challenge"> | string | null
+  }
+
+  export type SeasonCreateWithoutChallengesInput = {
+    slug: string
+    name: string
+    description?: string | null
+    imageUrl?: string | null
+    startAt: Date | string
+    endAt: Date | string
+    createdAt?: Date | string
+    sanityId?: string | null
+  }
+
+  export type SeasonUncheckedCreateWithoutChallengesInput = {
+    id?: number
+    slug: string
+    name: string
+    description?: string | null
+    imageUrl?: string | null
+    startAt: Date | string
+    endAt: Date | string
+    createdAt?: Date | string
+    sanityId?: string | null
+  }
+
+  export type SeasonCreateOrConnectWithoutChallengesInput = {
+    where: SeasonWhereUniqueInput
+    create: XOR<SeasonCreateWithoutChallengesInput, SeasonUncheckedCreateWithoutChallengesInput>
+  }
+
+  export type UserChallengeCompletionCreateWithoutChallengeInput = {
+    wallet: string
+    completionDay: string
+    completedAt?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: string | null
+  }
+
+  export type UserChallengeCompletionUncheckedCreateWithoutChallengeInput = {
+    wallet: string
+    completionDay: string
+    completedAt?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: string | null
+  }
+
+  export type UserChallengeCompletionCreateOrConnectWithoutChallengeInput = {
+    where: UserChallengeCompletionWhereUniqueInput
+    create: XOR<UserChallengeCompletionCreateWithoutChallengeInput, UserChallengeCompletionUncheckedCreateWithoutChallengeInput>
+  }
+
+  export type UserChallengeCompletionCreateManyChallengeInputEnvelope = {
+    data: UserChallengeCompletionCreateManyChallengeInput | UserChallengeCompletionCreateManyChallengeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SeasonUpsertWithoutChallengesInput = {
+    update: XOR<SeasonUpdateWithoutChallengesInput, SeasonUncheckedUpdateWithoutChallengesInput>
+    create: XOR<SeasonCreateWithoutChallengesInput, SeasonUncheckedCreateWithoutChallengesInput>
+    where?: SeasonWhereInput
+  }
+
+  export type SeasonUpdateToOneWithWhereWithoutChallengesInput = {
+    where?: SeasonWhereInput
+    data: XOR<SeasonUpdateWithoutChallengesInput, SeasonUncheckedUpdateWithoutChallengesInput>
+  }
+
+  export type SeasonUpdateWithoutChallengesInput = {
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SeasonUncheckedUpdateWithoutChallengesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserChallengeCompletionUpsertWithWhereUniqueWithoutChallengeInput = {
+    where: UserChallengeCompletionWhereUniqueInput
+    update: XOR<UserChallengeCompletionUpdateWithoutChallengeInput, UserChallengeCompletionUncheckedUpdateWithoutChallengeInput>
+    create: XOR<UserChallengeCompletionCreateWithoutChallengeInput, UserChallengeCompletionUncheckedCreateWithoutChallengeInput>
+  }
+
+  export type UserChallengeCompletionUpdateWithWhereUniqueWithoutChallengeInput = {
+    where: UserChallengeCompletionWhereUniqueInput
+    data: XOR<UserChallengeCompletionUpdateWithoutChallengeInput, UserChallengeCompletionUncheckedUpdateWithoutChallengeInput>
+  }
+
+  export type UserChallengeCompletionUpdateManyWithWhereWithoutChallengeInput = {
+    where: UserChallengeCompletionScalarWhereInput
+    data: XOR<UserChallengeCompletionUpdateManyMutationInput, UserChallengeCompletionUncheckedUpdateManyWithoutChallengeInput>
+  }
+
+  export type UserChallengeCompletionScalarWhereInput = {
+    AND?: UserChallengeCompletionScalarWhereInput | UserChallengeCompletionScalarWhereInput[]
+    OR?: UserChallengeCompletionScalarWhereInput[]
+    NOT?: UserChallengeCompletionScalarWhereInput | UserChallengeCompletionScalarWhereInput[]
+    wallet?: StringFilter<"UserChallengeCompletion"> | string
+    challengeId?: IntFilter<"UserChallengeCompletion"> | number
+    completionDay?: StringFilter<"UserChallengeCompletion"> | string
+    completedAt?: DateTimeFilter<"UserChallengeCompletion"> | Date | string
+    metadata?: JsonNullableFilter<"UserChallengeCompletion">
+    submissionLink?: StringNullableFilter<"UserChallengeCompletion"> | string | null
+  }
+
+  export type ChallengeCreateWithoutCompletionsInput = {
+    slug: string
+    title: string
+    description?: string | null
+    type: string
+    config: JsonNullValueInput | InputJsonValue
+    xpReward?: number
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    createdAt?: Date | string
+    sanityId?: string | null
+    season?: SeasonCreateNestedOneWithoutChallengesInput
+  }
+
+  export type ChallengeUncheckedCreateWithoutCompletionsInput = {
+    id?: number
+    slug: string
+    title: string
+    description?: string | null
+    type: string
+    config: JsonNullValueInput | InputJsonValue
+    xpReward?: number
+    seasonId?: number | null
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    createdAt?: Date | string
+    sanityId?: string | null
+  }
+
+  export type ChallengeCreateOrConnectWithoutCompletionsInput = {
+    where: ChallengeWhereUniqueInput
+    create: XOR<ChallengeCreateWithoutCompletionsInput, ChallengeUncheckedCreateWithoutCompletionsInput>
+  }
+
+  export type ChallengeUpsertWithoutCompletionsInput = {
+    update: XOR<ChallengeUpdateWithoutCompletionsInput, ChallengeUncheckedUpdateWithoutCompletionsInput>
+    create: XOR<ChallengeCreateWithoutCompletionsInput, ChallengeUncheckedCreateWithoutCompletionsInput>
+    where?: ChallengeWhereInput
+  }
+
+  export type ChallengeUpdateToOneWithWhereWithoutCompletionsInput = {
+    where?: ChallengeWhereInput
+    data: XOR<ChallengeUpdateWithoutCompletionsInput, ChallengeUncheckedUpdateWithoutCompletionsInput>
+  }
+
+  export type ChallengeUpdateWithoutCompletionsInput = {
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    xpReward?: IntFieldUpdateOperationsInput | number
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+    season?: SeasonUpdateOneWithoutChallengesNestedInput
+  }
+
+  export type ChallengeUncheckedUpdateWithoutCompletionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    xpReward?: IntFieldUpdateOperationsInput | number
+    seasonId?: NullableIntFieldUpdateOperationsInput | number | null
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type EnrollmentCreateManyUserInput = {
     courseId: string
     enrolledAt?: Date | string
@@ -10109,6 +16518,95 @@ export namespace Prisma {
     txSignature?: NullableStringFieldUpdateOperationsInput | string | null
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     xpEarned?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ChallengeCreateManySeasonInput = {
+    id?: number
+    slug: string
+    title: string
+    description?: string | null
+    type: string
+    config: JsonNullValueInput | InputJsonValue
+    xpReward?: number
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    createdAt?: Date | string
+    sanityId?: string | null
+  }
+
+  export type ChallengeUpdateWithoutSeasonInput = {
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    xpReward?: IntFieldUpdateOperationsInput | number
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+    completions?: UserChallengeCompletionUpdateManyWithoutChallengeNestedInput
+  }
+
+  export type ChallengeUncheckedUpdateWithoutSeasonInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    xpReward?: IntFieldUpdateOperationsInput | number
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+    completions?: UserChallengeCompletionUncheckedUpdateManyWithoutChallengeNestedInput
+  }
+
+  export type ChallengeUncheckedUpdateManyWithoutSeasonInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    xpReward?: IntFieldUpdateOperationsInput | number
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sanityId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserChallengeCompletionCreateManyChallengeInput = {
+    wallet: string
+    completionDay: string
+    completedAt?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: string | null
+  }
+
+  export type UserChallengeCompletionUpdateWithoutChallengeInput = {
+    wallet?: StringFieldUpdateOperationsInput | string
+    completionDay?: StringFieldUpdateOperationsInput | string
+    completedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserChallengeCompletionUncheckedUpdateWithoutChallengeInput = {
+    wallet?: StringFieldUpdateOperationsInput | string
+    completionDay?: StringFieldUpdateOperationsInput | string
+    completedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserChallengeCompletionUncheckedUpdateManyWithoutChallengeInput = {
+    wallet?: StringFieldUpdateOperationsInput | string
+    completionDay?: StringFieldUpdateOperationsInput | string
+    completedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    submissionLink?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

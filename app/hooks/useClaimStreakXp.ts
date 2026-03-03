@@ -2,26 +2,28 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { rewardXp } from "@/lib/services/backend-api";
 
-/** Claims daily streak XP for the connected wallet.
- *  Uses the same /api/academy/reward-xp backend endpoint but without
- *  requiring an admin token — the backend authorises via BACKEND_SIGNER. */
+/** Claims daily streak XP for the connected wallet via the BFF.
+ *  Frontend calls /api/xp/streak; BFF calls backend /v1/academy/reward-xp
+ *  using the configured backend signer and API token. */
 export function useClaimStreakXp() {
     const { publicKey } = useWallet();
     const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: async (amount: number) => {
-            const recipient = publicKey?.toBase58();
-            if (!recipient) throw new Error("Wallet not connected");
-            const result = await rewardXp({
-                recipient,
-                amount,
-                memo: "daily-streak",
+            const wallet = publicKey?.toBase58();
+            if (!wallet) throw new Error("Wallet not connected");
+            const res = await fetch("/api/xp/streak", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ wallet, amount }),
             });
-            if (result.error) throw new Error(result.error);
-            return result.tx!;
+            const data = (await res.json().catch(() => ({}))) as { error?: string; tx?: string };
+            if (!res.ok || data.error) {
+                throw new Error(data.error ?? res.statusText ?? "Failed to claim streak XP");
+            }
+            return data.tx;
         },
         onSuccess: () => {
             const wallet = publicKey?.toBase58() ?? "";
@@ -29,3 +31,4 @@ export function useClaimStreakXp() {
         },
     });
 }
+

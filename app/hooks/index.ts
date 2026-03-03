@@ -40,3 +40,10 @@ export { useIssueCredentialForCompletion } from "./useIssueCredentialForCompleti
 export { useCredentialCollectionsList, useTrackImageMap } from "./useCredentialCollectionsList";
 export { useLeaderboardRank } from "./useLeaderboardRank";
 export { useCoursesCompletedFor } from "./useCoursesCompletedFor";
+export { useChallenges, useAllChallenges, type ChallengeItem } from "./useChallenges";
+export { useSeasons, type SeasonItem } from "./useSeasons";
+export { useCompleteChallenge } from "./useCompleteChallenge";
+export {
+  useNotifications,
+  type NotificationItem,
+} from "./useNotifications";

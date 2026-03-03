@@ -14,7 +14,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 
-const JWT_REQUIRED_PATHS = ["/admin/courses", "/admin/config", "/admin/minters", "/admin/achievements"];
+const JWT_REQUIRED_PATHS = [
+  "/admin/courses",
+  "/admin/config",
+  "/admin/minters",
+  "/admin/achievements",
+  "/admin/challenges",
+  "/admin/credentials",
+];
 
 export function AdminLoginGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -34,8 +41,8 @@ export function AdminLoginGate({ children }: { children: React.ReactNode }) {
         <CardHeader>
           <CardTitle className="text-base">Admin login required</CardTitle>
           <CardDescription>
-            Use ADMIN_PASSWORD (backend .env) to create or update courses, config, minters, and
-            achievements.
+            Use ADMIN_PASSWORD (backend .env) to create or update courses, config, minters,
+            achievements, credentials, and challenges/seasons.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

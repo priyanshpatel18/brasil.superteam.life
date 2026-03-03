@@ -16,11 +16,15 @@ const ADMIN_ONLY_ACTIONS = new Set([
   "revoke-minter",
   "create-achievement-type",
   "deactivate-achievement-type",
-  "reward-xp",
   "award-achievement",
   "create-credential-collection",
   "issue-credential-for-completion",
   "upload-credential-metadata",
+  "create-season",
+  "update-season",
+  "create-challenge",
+  "update-challenge",
+  "sync-sanity-challenges",
 ]);
 
 const ALLOWED_ACTIONS = new Set([
@@ -33,13 +37,17 @@ const ALLOWED_ACTIONS = new Set([
   "upgrade-credential",
   "register-minter",
   "revoke-minter",
-  "reward-xp",
   "create-achievement-type",
   "award-achievement",
   "deactivate-achievement-type",
   "create-credential-collection",
   "issue-credential-for-completion",
   "upload-credential-metadata",
+  "create-season",
+  "update-season",
+  "create-challenge",
+  "update-challenge",
+  "sync-sanity-challenges",
   "index-enrollment",
 ]);
 
