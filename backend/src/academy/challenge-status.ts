@@ -1,4 +1,4 @@
-import type { Challenge, Season } from "@/generated/prisma/index.js";
+import type { Challenge, Season } from "@prisma/client";
 
 export type ChallengeStatus = "pending" | "active" | "ended";
 

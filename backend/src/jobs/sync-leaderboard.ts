@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { getPrisma } from "@/lib/prisma.js";
-import { Prisma } from "@/generated/prisma/index.js";
+import { Prisma } from "@prisma/client";
 import { createUserNotification } from "@/academy/notifications.js";
 
 export async function syncLeaderboardFromUsers(): Promise<void> {
