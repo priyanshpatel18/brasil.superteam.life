@@ -5,11 +5,10 @@ import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
 
-  const cycle = () => {
-    const next =
-      theme === "dark" ? "light" : theme === "light" ? "system" : "dark";
+  const toggle = () => {
+    const next = resolvedTheme === "dark" ? "light" : "dark";
     setTheme(next);
   };
 
@@ -17,8 +16,8 @@ export function ThemeToggle() {
     <Button
       variant="ghost"
       size="icon-sm"
-      onClick={cycle}
-      aria-label={`Theme: ${theme ?? "dark"}. Click to cycle.`}
+      onClick={toggle}
+      aria-label={`Theme: ${resolvedTheme ?? "dark"}. Click to toggle.`}
     >
       {resolvedTheme === "light" ? (
         <Sun className="size-4" />
