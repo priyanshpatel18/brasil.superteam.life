@@ -3,6 +3,7 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { XpBadge } from "./XpBadge";
 import { WalletConnectButton } from "@/components/wallet/WalletConnectButton";
+import { SocialAuthButton } from "@/components/auth/SocialAuthButton";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { NotificationBell } from "./NotificationBell";
@@ -17,6 +18,7 @@ export function AppHeader() {
         <LanguageSwitcher />
         <ThemeToggle />
         <NotificationBell />
+        <SocialAuthButton compact />
         <XpBadge />
         <WalletConnectButton />
       </div>

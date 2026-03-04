@@ -1,9 +1,11 @@
 import { QueryProvider } from "@/providers/QueryProvider";
 import { SolanaProvider } from "@/providers/SolanaProvider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { AuthProvider } from "@/providers/AuthProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@/components/analytics/Analytics";
 import { NavbarWrapper } from "@/components/landing/NavbarWrapper";
+import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
 import { siteConfig } from "@/config/siteConfig";
 import { Geist, Geist_Mono, Jersey_10, Inter } from "next/font/google";
 import { getLocale, getMessages } from "next-intl/server";
@@ -77,13 +79,16 @@ export default async function RootLayout({
         />
         <ThemeProvider>
           <SolanaProvider>
-            <QueryProvider>
-              <NextIntlClientProvider messages={messages} locale={locale}>
-                <Analytics />
-                <NavbarWrapper />
-                {children}
-              </NextIntlClientProvider>
-            </QueryProvider>
+            <AuthProvider>
+              <QueryProvider>
+                <NextIntlClientProvider messages={messages} locale={locale}>
+                  <Analytics />
+                  <ServiceWorkerRegister />
+                  <NavbarWrapper />
+                  {children}
+                </NextIntlClientProvider>
+              </QueryProvider>
+            </AuthProvider>
           </SolanaProvider>
         </ThemeProvider>
         <Toaster />

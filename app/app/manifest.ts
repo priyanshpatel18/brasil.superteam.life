@@ -1,7 +1,5 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://brasil.superteam.life";
-
 const { appName, description } = {
   appName: "Superteam Brasil",
   description:
@@ -13,11 +11,13 @@ export default function manifest(): MetadataRoute.Manifest {
     name: appName,
     short_name: "Superteam BR",
     description,
+    id: "/",
     start_url: "/",
-    scope: baseUrl,
+    scope: "/",
     display: "standalone",
+    display_override: ["standalone", "minimal-ui", "browser"],
     background_color: "#ffffff",
-    theme_color: "#9945FF",
+    theme_color: "#facc15",
     orientation: "portrait-primary",
     lang: "pt-BR",
     icons: [
