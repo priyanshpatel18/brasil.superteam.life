@@ -89,7 +89,7 @@ const TESTIMONIALS_ROW_2: Testimonial[] = [
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     return (
-        <div className="inline-flex w-[300px] sm:w-[340px] shrink-0 flex-col gap-3 rounded-2xl border border-white/10 bg-card/30 p-5 transition-all duration-300 hover:bg-card/50 hover:border-yellow-400/20">
+        <div className="inline-flex w-[300px] shrink-0 flex-col gap-3 rounded-2xl border border-border bg-card p-5 transition-colors duration-300 hover:border-foreground/30 sm:w-[340px]">
             <p className="font-game text-base sm:text-lg text-foreground leading-relaxed">
                 &ldquo;{testimonial.quote}&rdquo;
             </p>
@@ -152,12 +152,11 @@ export function TestimonialsSection() {
                 transition={{ duration: 0.5 }}
                 className="mb-10 sm:mb-14 text-center px-4"
             >
-                <p className="mb-2 font-game text-base sm:text-lg tracking-widest text-yellow-400 uppercase">
+                <p className="mb-2 font-game text-base sm:text-lg tracking-widest text-muted-foreground uppercase">
                     Community
                 </p>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-game leading-tight">
-                    Trusted by developers building on{" "}
-                    <span className="text-yellow-400">Solana</span>.
+                    Trusted by developers building on Solana.
                 </h2>
             </motion.div>
 

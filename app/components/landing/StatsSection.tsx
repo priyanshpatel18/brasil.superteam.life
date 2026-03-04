@@ -73,7 +73,7 @@ function StatCounter({
             transition={{ duration: 0.5, delay: delay / 1000 }}
             className="flex flex-col items-center gap-2 py-6 sm:py-8"
         >
-            <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-400/70 mb-1" />
+            <Icon className="mb-1 h-5 w-5 text-yellow-500 sm:h-6 sm:w-6 dark:text-yellow-400" />
             <span
                 className="font-game text-3xl sm:text-4xl md:text-5xl tabular-nums text-foreground"
             >
@@ -94,7 +94,7 @@ export function StatsSection() {
     return (
         <section className="w-full py-8 sm:py-12 bg-background">
             <div ref={ref} className="mx-auto max-w-5xl px-4 sm:px-6">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-white/10 rounded-2xl border border-white/10 bg-card/20">
+                <div className="grid grid-cols-2 gap-0 divide-x divide-border rounded-2xl border border-border bg-card md:grid-cols-4">
                     {STATS.map((stat, i) => (
                         <StatCounter
                             key={stat.label}

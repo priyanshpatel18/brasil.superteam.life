@@ -47,18 +47,18 @@ function FAQAccordionItem({
     onToggle: () => void;
 }) {
     return (
-        <div className="border-b border-white/10 last:border-b-0">
+        <div className="border-b border-border last:border-b-0">
             <button
                 onClick={onToggle}
                 className="w-full flex items-center justify-between py-5 sm:py-6 text-left group"
             >
-                <span className="font-game text-lg sm:text-xl text-foreground pr-4 group-hover:text-yellow-400 transition-colors">
+                <span className="pr-4 font-game text-lg text-foreground transition-colors group-hover:text-foreground/80 sm:text-xl">
                     {item.question}
                 </span>
                 <ChevronDown
                     className={cn(
                         "h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300",
-                        isOpen && "rotate-180 text-yellow-400"
+                        isOpen && "rotate-180 text-foreground"
                     )}
                 />
             </button>
@@ -92,7 +92,7 @@ export function FAQSection() {
                     transition={{ duration: 0.5 }}
                     className="mb-10 sm:mb-12"
                 >
-                    <p className="mb-2 font-game text-base sm:text-lg tracking-widest text-yellow-400 uppercase">
+                    <p className="mb-2 font-game text-base tracking-widest text-muted-foreground uppercase sm:text-lg">
                         FAQ
                     </p>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-game leading-tight">
@@ -107,7 +107,7 @@ export function FAQSection() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.15 }}
-                    className="rounded-2xl border border-white/10 bg-card/30 px-5 sm:px-8"
+                    className="rounded-2xl border border-border bg-card px-5 sm:px-8"
                 >
                     {FAQS.map((faq, i) => (
                         <FAQAccordionItem

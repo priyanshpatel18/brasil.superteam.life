@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
@@ -9,20 +10,21 @@ export function HeroSection() {
     return (
         <section className="relative w-full min-h-screen bg-background p-3 sm:p-5">
             <div className="relative h-[calc(100vh-1.5rem)] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl sm:h-[calc(100vh-2.5rem)] sm:rounded-3xl">
-                {/* Background scheme from CTA + diagonal cross grid */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-950 via-background to-yellow-950/30" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(16,185,129,0.12)_0%,_transparent_60%)]" />
-                <div
-                    className="absolute inset-0"
-                    style={{
-                        backgroundImage: `
-                            linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.12) 49%, rgba(255,255,255,0.12) 51%, transparent 51%),
-                            linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.12) 49%, rgba(255,255,255,0.12) 51%, transparent 51%)
-                        `,
-                        backgroundSize: "40px 40px",
-                    }}
+                <div className="mb-3 inline-block sm:mb-4">
+                    <div className="relative overflow-hidden rounded-full shadow-[0_0_12px_rgba(0,0,0,0.15)] dark:shadow-[0_0_12px_rgba(255,255,255,0.1)]" style={{ padding: '1px 1.5px' }}>
+                    </div>
+                </div>
+
+                <Image
+                    src="/hero.gif"
+                    alt="Superteam Academy hero background"
+                    fill
+                    priority
+                    unoptimized
+                    className="object-cover"
                 />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(2,6,18,0.45)_62%,rgba(1,3,10,0.72)_100%)]" />
+                <div className="absolute inset-0 bg-black/55" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(2,6,18,0.3)_62%,rgba(1,3,10,0.65)_100%)]" />
 
                 {/* Content */}
                 <div className="relative z-10 flex h-full flex-col items-center justify-center px-5 text-center sm:px-8">
@@ -30,12 +32,26 @@ export function HeroSection() {
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.45 }}
-                        className="mb-5 inline-flex items-center gap-2 rounded-full border border-yellow-400/25 bg-yellow-400/10 px-4 py-1.5"
                     >
-                        <span className="h-1.5 w-1.5 rounded-full bg-yellow-300 animate-pulse" />
-                        <span className="font-game text-sm uppercase tracking-wider text-yellow-300">
-                            Solana Learning Layer
-                        </span>
+                        {/* Inner badge content */}
+                        <div className="relative z-10 inline-flex items-center gap-1.5 rounded-full bg-background px-6 py-2">
+                            <span className="glow-text font-game  text-[12px] font-medium text-brand-black dark:text-brand-cream/80">Powered by Solana</span>
+                            {/* Solana logo — filtered dark for light mode, native white for dark */}
+                            <Image
+                                src="/solanaLogo.png"
+                                alt="Solana"
+                                width={72}
+                                height={16}
+                                className="h-3 w-auto brightness-0 dark:hidden"
+                            />
+                            <Image
+                                src="/solanaLogo.png"
+                                alt="Solana"
+                                width={72}
+                                height={16}
+                                className="hidden h-3 w-auto dark:block"
+                            />
+                        </div>
                     </motion.div>
 
                     <motion.h1

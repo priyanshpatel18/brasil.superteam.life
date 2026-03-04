@@ -17,16 +17,11 @@ export function CTASection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6 }}
-                    className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 px-6 sm:px-12 py-16 sm:py-20 text-center"
+                    className="rounded-2xl border border-border bg-card px-6 py-16 text-center sm:rounded-3xl sm:px-12 sm:py-20"
                 >
-                    {/* Rich gradient background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-950 via-background to-yellow-950/30" />
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(16,185,129,0.12)_0%,_transparent_60%)]" />
-
-                    <div className="relative z-10 space-y-5 sm:space-y-6">
+                    <div className="space-y-5 sm:space-y-6">
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-game leading-tight max-w-3xl mx-auto">
-                            Ready to start building on{" "}
-                            <span className="text-yellow-400">Solana</span>?
+                            Ready to start building on Solana?
                         </h2>
 
                         <p className="mx-auto max-w-xl font-game text-base sm:text-lg text-muted-foreground leading-relaxed">

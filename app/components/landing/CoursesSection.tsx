@@ -15,7 +15,6 @@ interface Course {
     lessons: number;
     xp: number;
     image: string;
-    accent: string;
 }
 
 const COURSES: Course[] = [
@@ -28,7 +27,6 @@ const COURSES: Course[] = [
         lessons: 5,
         xp: 500,
         image: "/courses/sol-fundamentals.png",
-        accent: "from-emerald-600/20 to-emerald-600/5",
     },
     {
         slug: "anchor-development",
@@ -39,7 +37,6 @@ const COURSES: Course[] = [
         lessons: 8,
         xp: 800,
         image: "/courses/anchor-dev.png",
-        accent: "from-blue-600/20 to-blue-600/5",
     },
     {
         slug: "token-extensions",
@@ -50,7 +47,6 @@ const COURSES: Course[] = [
         lessons: 6,
         xp: 600,
         image: "/courses/token-extensions.png",
-        accent: "from-purple-600/20 to-purple-600/5",
     },
 ];
 
@@ -75,9 +71,7 @@ function CourseCard({
         >
             <Link
                 href={`/courses/${course.slug}`}
-                className={`block h-full rounded-2xl border border-white/10 overflow-hidden
-                    bg-gradient-to-b ${course.accent}
-                    hover:border-yellow-400/30`}
+                className="block h-full overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-foreground/30"
             >
                 {/* Image */}
                 <div className="relative h-40 sm:h-48 w-full overflow-hidden">
@@ -87,10 +81,10 @@ function CourseCard({
                         fill
                         className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/20 to-transparent" />
                     {/* Level badge */}
                     <div className="absolute top-3 left-3">
-                        <span className="bg-black/60 backdrop-blur-sm font-game text-xs text-white/90 px-2.5 py-1 rounded-full border border-white/10 inline-flex items-center gap-1">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background/90 px-2.5 py-1 font-game text-xs text-foreground">
                             <ChartNoAxesColumnIncreasing className="h-3 w-3" />
                             {course.level}
                         </span>
@@ -109,7 +103,7 @@ function CourseCard({
                         <span className="font-game text-sm text-muted-foreground inline-flex items-center gap-1">
                             <BookOpen className="h-3.5 w-3.5" /> {course.lessons} lessons
                         </span>
-                        <span className="font-game text-sm text-yellow-400 inline-flex items-center gap-1">
+                        <span className="font-game text-sm text-muted-foreground inline-flex items-center gap-1">
                             <Sparkles className="h-3.5 w-3.5" /> {course.xp} XP
                         </span>
                     </div>
@@ -133,12 +127,12 @@ export function CoursesSection() {
                     transition={{ duration: 0.5 }}
                     className="mb-10 sm:mb-12 max-w-2xl"
                 >
-                    <p className="mb-2 font-game text-base sm:text-lg tracking-widest text-yellow-400 uppercase">
+                    <p className="mb-2 font-game text-base sm:text-lg tracking-widest text-muted-foreground uppercase">
                         Learning Tracks
                     </p>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-game leading-tight">
                         Structured courses to take you
-                        from <span className="text-yellow-400">zero</span> to <span className="text-yellow-400">on-chain</span>.
+                        from zero to on-chain.
                     </h2>
                 </motion.div>
 
