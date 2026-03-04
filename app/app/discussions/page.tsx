@@ -7,7 +7,7 @@ import { DiscussionsListContent } from "@/components/app/DiscussionsListContent"
 /**
  * Public discussions at /discussions.
  * When logged in: sidebar + app header (no top navbar).
- * When logged out: top navbar only (like public profile). Participation (new thread / reply) requires wallet.
+ * When logged out: top navbar only (like public profile). Participation requires a wallet or social sign-in.
  */
 export default function DiscussionsPage() {
     const { connected } = useWallet();

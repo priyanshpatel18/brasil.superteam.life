@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useRequireWallet } from "@/hooks/useRequireWallet";
+import { useSession } from "next-auth/react";
 import { MessageSquareText, PlusCircle, Search, X } from "lucide-react";
 import { toast } from "sonner";
 
@@ -75,6 +76,7 @@ export function DiscussionsListContent() {
   const router = useRouter();
   const { publicKey } = useWallet();
   const { requireWallet } = useRequireWallet();
+  const { data: session } = useSession();
 
   const [threads, setThreads] = useState<CommunityThread[]>([]);
   const [loading, setLoading] = useState(true);
@@ -150,11 +152,16 @@ export function DiscussionsListContent() {
   const canSubmit = useMemo(() => {
     return title.trim().length >= 5 && body.trim().length >= 10 && !isCreating;
   }, [title, body, isCreating]);
+  const canParticipate = !!publicKey || !!session?.user;
+  const sessionDisplayName =
+    session?.user?.name?.trim() ||
+    session?.user?.email?.split("@")[0]?.trim() ||
+    "";
 
   async function onCreateThread(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!canSubmit) return;
-    if (!requireWallet()) return;
+    if (!canParticipate && !requireWallet()) return;
     setIsCreating(true);
 
     try {
@@ -165,7 +172,7 @@ export function DiscussionsListContent() {
           type: threadType,
           title: title.trim(),
           body: body.trim(),
-          authorName: authorName.trim(),
+          authorName: authorName.trim() || sessionDisplayName,
           walletAddress: publicKey?.toBase58() ?? null,
         }),
       });
@@ -233,7 +240,8 @@ export function DiscussionsListContent() {
               variant="pixel"
               className="shrink-0 font-game text-md"
               onClick={() => {
-                if (!requireWallet(() => setIsCreateModalOpen(true))) return;
+                if (!canParticipate && !requireWallet()) return;
+                setIsCreateModalOpen(true);
               }}
             >
               <PlusCircle className="size-4" />

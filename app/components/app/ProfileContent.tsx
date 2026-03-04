@@ -19,7 +19,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PixelAvatar, setAvatarVersion } from "@/components/app/PixelAvatar";
 import { CredentialImage } from "@/components/app/CredentialImage";
-import { useXpBalanceFor, useCredentialsFor, useTrackImageMap, useLeaderboardRank, useCoursesCompletedFor } from "@/hooks";
+import {
+    useXpBalanceFor,
+    useCredentialsFor,
+    useTrackImageMap,
+    useLeaderboardRank,
+    useCoursesCompletedFor,
+} from "@/hooks";
 import { levelFromXp, xpProgressInLevel } from "@/lib/level";
 import { getDisplayName, setDisplayName, onDisplayNameChanged } from "@/lib/display-name";
 import { toast } from "sonner";
@@ -70,6 +76,8 @@ export function ProfileContent({ walletAddress, isOwner: isOwnerProp }: ProfileC
     const xpValue = xp ?? 0;
     const level = levelFromXp(xpValue);
     const progress = xpProgressInLevel(xpValue);
+    const coursesCompletedValue = coursesCompleted ?? 0;
+    const credentialsCount = credentials?.length ?? 0;
 
     const handleCopy = () => {
         navigator.clipboard.writeText(walletAddress);
@@ -247,14 +255,14 @@ export function ProfileContent({ walletAddress, isOwner: isOwnerProp }: ProfileC
                 <div className="p-4 border-4 rounded-2xl text-center bg-card">
                     <BookOpen className="mx-auto mb-2 h-7 w-7 text-yellow-400" />
                     <h2 className="font-game text-2xl sm:text-3xl">
-                        {isLoading ? "–" : coursesCompleted.toLocaleString()}
+                        {isLoading ? "–" : coursesCompletedValue.toLocaleString()}
                     </h2>
                     <p className="font-game text-sm sm:text-base text-muted-foreground">{t("coursesCompleted")}</p>
                 </div>
                 <div className="p-4 border-4 rounded-2xl text-center bg-card">
                     <Award className="mx-auto mb-2 h-7 w-7 text-yellow-400" />
                     <h2 className="font-game text-2xl sm:text-3xl">
-                        {isLoading ? "–" : credentials?.length ?? 0}
+                        {isLoading ? "–" : credentialsCount}
                     </h2>
                     <p className="font-game text-sm sm:text-base text-muted-foreground">{t("credentialsEarned")}</p>
                 </div>
@@ -265,6 +273,15 @@ export function ProfileContent({ walletAddress, isOwner: isOwnerProp }: ProfileC
                     </h2>
                     <p className="font-game text-sm sm:text-base text-muted-foreground">{t("leaderboardRank")}</p>
                 </div>
+            </div>
+
+            <div className="mt-6 flex justify-end">
+                <Button asChild variant="outline" className="font-game text-base">
+                    <Link href="/profile/achievements">
+                        <Award className="h-4 w-4" />
+                        View Achievements
+                    </Link>
+                </Button>
             </div>
 
             {/* Credentials Gallery */}

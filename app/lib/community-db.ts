@@ -200,3 +200,21 @@ export async function createReply(input: {
     createdAt: toIsoString(created.createdAt),
   };
 }
+
+export async function getCommunityStatsByWallet(walletAddress: string): Promise<{
+  threadCount: number;
+  replyCount: number;
+}> {
+  const prisma = getCommunityPrisma();
+  const wallet = walletAddress.trim();
+  if (!wallet) {
+    return { threadCount: 0, replyCount: 0 };
+  }
+
+  const [threadCount, replyCount] = await Promise.all([
+    prisma.communityThread.count({ where: { walletAddress: wallet } }),
+    prisma.communityReply.count({ where: { walletAddress: wallet } }),
+  ]);
+
+  return { threadCount, replyCount };
+}
